@@ -1,9 +1,6 @@
 //
 //  FadingScrollView.m
-//  FadeScrollView
-//
 //  Created by Stephanie Sharp on 1/06/13.
-//  Copyright (c) 2013 Stephanie Sharp. All rights reserved.
 //
 
 #import "SSFadingScrollView.h"
