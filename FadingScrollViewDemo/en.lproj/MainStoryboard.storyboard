@@ -1,23 +1,64 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="2.0" toolsVersion="2519" systemVersion="12A206j" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" initialViewController="2">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="2.0" toolsVersion="3084" systemVersion="12E55" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" initialViewController="2">
     <dependencies>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="1856"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="2083"/>
     </dependencies>
     <scenes>
-        <!--class Prefix:identifier View Controller-->
+        <!--View Controller-->
         <scene sceneID="5">
             <objects>
                 <viewController id="2" customClass="SSViewController" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="3">
-                        <rect key="frame" x="0.0" y="20" width="320" height="460"/>
+                        <rect key="frame" x="0.0" y="20" width="320" height="548"/>
                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
+                        <subviews>
+                            <scrollView opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Eio-F9-JcA" customClass="SSFadingScrollView">
+                                <subviews>
+                                    <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" preferredMaxLayoutWidth="280" translatesAutoresizingMaskIntoConstraints="NO" id="Xlp-9H-yHd">
+                                        <mutableString key="text">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Aenean nunc nisi, tincidunt nec nisl a, sodales volutpat dolor. Maecenas molestie a libero a lacinia. Fusce sodales euismod arcu, molestie viverra est mattis in. Donec pharetra ligula in elit aliquam ullamcorper. Praesent sed lobortis tellus. Aenean laoreet nibh vel pharetra dignissim. 
+
+Integer a augue vitae elit blandit bibendum sit amet in orci. Etiam ac odio eu nulla luctus porta. Praesent ante erat, tristique in leo eget, mattis pellentesque erat. Phasellus ut felis luctus, viverra purus sit amet, commodo erat. Vestibulum quis sem feugiat, dapibus est a, elementum erat. Nam feugiat turpis purus, eu pulvinar eros pretium ac. 
+
+Morbi ornare, lacus et feugiat auctor, neque orci interdum dui, ut imperdiet ligula urna at ipsum. Donec lectus orci, blandit a dignissim sit amet, sagittis id urna. Mauris sodales neque est, non scelerisque nisi rutrum in. Praesent tempor tortor eros, nec blandit eros commodo a. Quisque volutpat, risus ac mattis commodo, lacus quam adipiscing nisl, id scelerisque ligula diam nec turpis. Donec malesuada, felis vitae tristique pretium, ante justo commodo ligula, id viverra nibh turpis quis massa. Maecenas sagittis eu felis sed pellentesque. Integer varius justo sem, sed viverra leo suscipit id. Cum sociis natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus. </mutableString>
+                                        <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                        <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                                        <nil key="highlightedColor"/>
+                                    </label>
+                                </subviews>
+                                <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
+                                <constraints>
+                                    <constraint firstItem="Xlp-9H-yHd" firstAttribute="leading" secondItem="Eio-F9-JcA" secondAttribute="leading" constant="20" symbolic="YES" type="default" id="BJt-Zq-sLN"/>
+                                    <constraint firstAttribute="trailing" secondItem="Xlp-9H-yHd" secondAttribute="trailing" constant="20" symbolic="YES" type="default" id="eUN-0v-2wP"/>
+                                    <constraint firstAttribute="bottom" secondItem="Xlp-9H-yHd" secondAttribute="bottom" constant="-84" id="h2G-dP-NaS"/>
+                                    <constraint firstItem="Xlp-9H-yHd" firstAttribute="top" secondItem="Eio-F9-JcA" secondAttribute="top" constant="20" symbolic="YES" type="default" id="qFL-p0-6x1"/>
+                                </constraints>
+                            </scrollView>
+                        </subviews>
+                        <color key="backgroundColor" white="0.89758694559999996" alpha="1" colorSpace="calibratedWhite"/>
+                        <constraints>
+                            <constraint firstItem="Eio-F9-JcA" firstAttribute="trailing" secondItem="3" secondAttribute="trailing" type="default" id="Dom-O5-jVa"/>
+                            <constraint firstItem="Eio-F9-JcA" firstAttribute="top" secondItem="3" secondAttribute="top" type="user" id="LRn-Mp-rn2"/>
+                            <constraint firstItem="Eio-F9-JcA" firstAttribute="bottom" secondItem="3" secondAttribute="bottom" type="default" id="ccg-bZ-f4b"/>
+                            <constraint firstItem="Eio-F9-JcA" firstAttribute="leading" secondItem="3" secondAttribute="leading" type="default" id="nbi-3c-buw"/>
+                            <constraint firstItem="Eio-F9-JcA" firstAttribute="top" secondItem="3" secondAttribute="top" type="user" id="ybz-JT-p9E"/>
+                        </constraints>
                     </view>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="4" sceneMemberID="firstResponder"/>
             </objects>
         </scene>
     </scenes>
+    <classes>
+        <class className="NSLayoutConstraint" superclassName="NSObject">
+            <source key="sourceIdentifier" type="project" relativePath="./Classes/NSLayoutConstraint.h"/>
+        </class>
+        <class className="SSFadingScrollView" superclassName="UIScrollView">
+            <source key="sourceIdentifier" type="project" relativePath="./Classes/SSFadingScrollView.h"/>
+        </class>
+        <class className="SSViewController" superclassName="UIViewController">
+            <source key="sourceIdentifier" type="project" relativePath="./Classes/SSViewController.h"/>
+        </class>
+    </classes>
     <simulatedMetricsContainer key="defaultSimulatedMetrics">
         <simulatedStatusBarMetrics key="statusBar"/>
         <simulatedOrientationMetrics key="orientation"/>
