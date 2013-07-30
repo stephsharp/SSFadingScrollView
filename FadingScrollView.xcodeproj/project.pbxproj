@@ -1,0 +1,326 @@
+// !$*UTF8*$!
+{
+	archiveVersion = 1;
+	classes = {
+	};
+	objectVersion = 46;
+	objects = {
+
+/* Begin PBXBuildFile section */
+		970FDD7517A7A512008DC2FB /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 970FDD2A17A7A4DC008DC2FB /* UIKit.framework */; };
+		970FDD7617A7A512008DC2FB /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 970FDD2C17A7A4DC008DC2FB /* Foundation.framework */; };
+		970FDD7717A7A512008DC2FB /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 970FDD2E17A7A4DC008DC2FB /* CoreGraphics.framework */; };
+		970FDD7D17A7A512008DC2FB /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = 970FDD7B17A7A512008DC2FB /* InfoPlist.strings */; };
+		970FDD7F17A7A512008DC2FB /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 970FDD7E17A7A512008DC2FB /* main.m */; };
+		970FDD8317A7A512008DC2FB /* SSAppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 970FDD8217A7A512008DC2FB /* SSAppDelegate.m */; };
+		970FDD8517A7A512008DC2FB /* Default.png in Resources */ = {isa = PBXBuildFile; fileRef = 970FDD8417A7A512008DC2FB /* Default.png */; };
+		970FDD8717A7A512008DC2FB /* Default@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 970FDD8617A7A512008DC2FB /* Default@2x.png */; };
+		970FDD8917A7A512008DC2FB /* Default-568h@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 970FDD8817A7A512008DC2FB /* Default-568h@2x.png */; };
+		970FDD8C17A7A512008DC2FB /* MainStoryboard.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 970FDD8A17A7A512008DC2FB /* MainStoryboard.storyboard */; };
+		970FDD8F17A7A512008DC2FB /* SSViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 970FDD8E17A7A512008DC2FB /* SSViewController.m */; };
+		970FDD9A17A7A57B008DC2FB /* SSFadingScrollView.m in Sources */ = {isa = PBXBuildFile; fileRef = 970FDD9917A7A57B008DC2FB /* SSFadingScrollView.m */; };
+		970FDD9D17A7A5C6008DC2FB /* QuartzCore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 970FDD9B17A7A5B9008DC2FB /* QuartzCore.framework */; };
+/* End PBXBuildFile section */
+
+/* Begin PBXFileReference section */
+		970FDD2A17A7A4DC008DC2FB /* UIKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = UIKit.framework; path = System/Library/Frameworks/UIKit.framework; sourceTree = SDKROOT; };
+		970FDD2C17A7A4DC008DC2FB /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
+		970FDD2E17A7A4DC008DC2FB /* CoreGraphics.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreGraphics.framework; path = System/Library/Frameworks/CoreGraphics.framework; sourceTree = SDKROOT; };
+		970FDD7417A7A512008DC2FB /* FadingScrollViewDemo.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = FadingScrollViewDemo.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		970FDD7A17A7A512008DC2FB /* FadingScrollViewDemo-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "FadingScrollViewDemo-Info.plist"; sourceTree = "<group>"; };
+		970FDD7C17A7A512008DC2FB /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/InfoPlist.strings; sourceTree = "<group>"; };
+		970FDD7E17A7A512008DC2FB /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
+		970FDD8017A7A512008DC2FB /* FadingScrollViewDemo-Prefix.pch */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "FadingScrollViewDemo-Prefix.pch"; sourceTree = "<group>"; };
+		970FDD8117A7A512008DC2FB /* SSAppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = SSAppDelegate.h; sourceTree = "<group>"; };
+		970FDD8217A7A512008DC2FB /* SSAppDelegate.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = SSAppDelegate.m; sourceTree = "<group>"; };
+		970FDD8417A7A512008DC2FB /* Default.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = Default.png; sourceTree = "<group>"; };
+		970FDD8617A7A512008DC2FB /* Default@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Default@2x.png"; sourceTree = "<group>"; };
+		970FDD8817A7A512008DC2FB /* Default-568h@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Default-568h@2x.png"; sourceTree = "<group>"; };
+		970FDD8B17A7A512008DC2FB /* en */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = en; path = en.lproj/MainStoryboard.storyboard; sourceTree = "<group>"; };
+		970FDD8D17A7A512008DC2FB /* SSViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = SSViewController.h; sourceTree = "<group>"; };
+		970FDD8E17A7A512008DC2FB /* SSViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = SSViewController.m; sourceTree = "<group>"; };
+		970FDD9817A7A57B008DC2FB /* SSFadingScrollView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SSFadingScrollView.h; sourceTree = "<group>"; };
+		970FDD9917A7A57B008DC2FB /* SSFadingScrollView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SSFadingScrollView.m; sourceTree = "<group>"; };
+		970FDD9B17A7A5B9008DC2FB /* QuartzCore.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = QuartzCore.framework; path = System/Library/Frameworks/QuartzCore.framework; sourceTree = SDKROOT; };
+/* End PBXFileReference section */
+
+/* Begin PBXFrameworksBuildPhase section */
+		970FDD7117A7A512008DC2FB /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				970FDD9D17A7A5C6008DC2FB /* QuartzCore.framework in Frameworks */,
+				970FDD7517A7A512008DC2FB /* UIKit.framework in Frameworks */,
+				970FDD7617A7A512008DC2FB /* Foundation.framework in Frameworks */,
+				970FDD7717A7A512008DC2FB /* CoreGraphics.framework in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXFrameworksBuildPhase section */
+
+/* Begin PBXGroup section */
+		970FDD1E17A7A4DC008DC2FB = {
+			isa = PBXGroup;
+			children = (
+				970FDD9717A7A57B008DC2FB /* FadingScrollView */,
+				970FDD7817A7A512008DC2FB /* FadingScrollViewDemo */,
+				970FDD2917A7A4DC008DC2FB /* Frameworks */,
+				970FDD2817A7A4DC008DC2FB /* Products */,
+			);
+			sourceTree = "<group>";
+		};
+		970FDD2817A7A4DC008DC2FB /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				970FDD7417A7A512008DC2FB /* FadingScrollViewDemo.app */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
+		970FDD2917A7A4DC008DC2FB /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				970FDD2A17A7A4DC008DC2FB /* UIKit.framework */,
+				970FDD2C17A7A4DC008DC2FB /* Foundation.framework */,
+				970FDD2E17A7A4DC008DC2FB /* CoreGraphics.framework */,
+				970FDD9B17A7A5B9008DC2FB /* QuartzCore.framework */,
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
+		970FDD7817A7A512008DC2FB /* FadingScrollViewDemo */ = {
+			isa = PBXGroup;
+			children = (
+				970FDD8117A7A512008DC2FB /* SSAppDelegate.h */,
+				970FDD8217A7A512008DC2FB /* SSAppDelegate.m */,
+				970FDD8A17A7A512008DC2FB /* MainStoryboard.storyboard */,
+				970FDD8D17A7A512008DC2FB /* SSViewController.h */,
+				970FDD8E17A7A512008DC2FB /* SSViewController.m */,
+				970FDD7917A7A512008DC2FB /* Supporting Files */,
+			);
+			path = FadingScrollViewDemo;
+			sourceTree = "<group>";
+		};
+		970FDD7917A7A512008DC2FB /* Supporting Files */ = {
+			isa = PBXGroup;
+			children = (
+				970FDD7A17A7A512008DC2FB /* FadingScrollViewDemo-Info.plist */,
+				970FDD7B17A7A512008DC2FB /* InfoPlist.strings */,
+				970FDD7E17A7A512008DC2FB /* main.m */,
+				970FDD8017A7A512008DC2FB /* FadingScrollViewDemo-Prefix.pch */,
+				970FDD8417A7A512008DC2FB /* Default.png */,
+				970FDD8617A7A512008DC2FB /* Default@2x.png */,
+				970FDD8817A7A512008DC2FB /* Default-568h@2x.png */,
+			);
+			name = "Supporting Files";
+			sourceTree = "<group>";
+		};
+		970FDD9717A7A57B008DC2FB /* FadingScrollView */ = {
+			isa = PBXGroup;
+			children = (
+				970FDD9817A7A57B008DC2FB /* SSFadingScrollView.h */,
+				970FDD9917A7A57B008DC2FB /* SSFadingScrollView.m */,
+			);
+			path = FadingScrollView;
+			sourceTree = "<group>";
+		};
+/* End PBXGroup section */
+
+/* Begin PBXNativeTarget section */
+		970FDD7317A7A512008DC2FB /* FadingScrollViewDemo */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 970FDD9017A7A512008DC2FB /* Build configuration list for PBXNativeTarget "FadingScrollViewDemo" */;
+			buildPhases = (
+				970FDD7017A7A512008DC2FB /* Sources */,
+				970FDD7117A7A512008DC2FB /* Frameworks */,
+				970FDD7217A7A512008DC2FB /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = FadingScrollViewDemo;
+			productName = FadingScrollViewDemo;
+			productReference = 970FDD7417A7A512008DC2FB /* FadingScrollViewDemo.app */;
+			productType = "com.apple.product-type.application";
+		};
+/* End PBXNativeTarget section */
+
+/* Begin PBXProject section */
+		970FDD1F17A7A4DC008DC2FB /* Project object */ = {
+			isa = PBXProject;
+			attributes = {
+				CLASSPREFIX = SS;
+				LastUpgradeCheck = 0460;
+				ORGANIZATIONNAME = "Stephanie Sharp";
+			};
+			buildConfigurationList = 970FDD2217A7A4DC008DC2FB /* Build configuration list for PBXProject "FadingScrollView" */;
+			compatibilityVersion = "Xcode 3.2";
+			developmentRegion = English;
+			hasScannedForEncodings = 0;
+			knownRegions = (
+				en,
+			);
+			mainGroup = 970FDD1E17A7A4DC008DC2FB;
+			productRefGroup = 970FDD2817A7A4DC008DC2FB /* Products */;
+			projectDirPath = "";
+			projectRoot = "";
+			targets = (
+				970FDD7317A7A512008DC2FB /* FadingScrollViewDemo */,
+			);
+		};
+/* End PBXProject section */
+
+/* Begin PBXResourcesBuildPhase section */
+		970FDD7217A7A512008DC2FB /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				970FDD7D17A7A512008DC2FB /* InfoPlist.strings in Resources */,
+				970FDD8517A7A512008DC2FB /* Default.png in Resources */,
+				970FDD8717A7A512008DC2FB /* Default@2x.png in Resources */,
+				970FDD8917A7A512008DC2FB /* Default-568h@2x.png in Resources */,
+				970FDD8C17A7A512008DC2FB /* MainStoryboard.storyboard in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXResourcesBuildPhase section */
+
+/* Begin PBXSourcesBuildPhase section */
+		970FDD7017A7A512008DC2FB /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				970FDD7F17A7A512008DC2FB /* main.m in Sources */,
+				970FDD8317A7A512008DC2FB /* SSAppDelegate.m in Sources */,
+				970FDD8F17A7A512008DC2FB /* SSViewController.m in Sources */,
+				970FDD9A17A7A57B008DC2FB /* SSFadingScrollView.m in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXSourcesBuildPhase section */
+
+/* Begin PBXVariantGroup section */
+		970FDD7B17A7A512008DC2FB /* InfoPlist.strings */ = {
+			isa = PBXVariantGroup;
+			children = (
+				970FDD7C17A7A512008DC2FB /* en */,
+			);
+			name = InfoPlist.strings;
+			sourceTree = "<group>";
+		};
+		970FDD8A17A7A512008DC2FB /* MainStoryboard.storyboard */ = {
+			isa = PBXVariantGroup;
+			children = (
+				970FDD8B17A7A512008DC2FB /* en */,
+			);
+			name = MainStoryboard.storyboard;
+			sourceTree = "<group>";
+		};
+/* End PBXVariantGroup section */
+
+/* Begin XCBuildConfiguration section */
+		970FDD4817A7A4DD008DC2FB /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				COPY_PHASE_STRIP = NO;
+				GCC_C_LANGUAGE_STANDARD = gnu99;
+				GCC_DYNAMIC_NO_PIC = NO;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"DEBUG=1",
+					"$(inherited)",
+				);
+				GCC_SYMBOLS_PRIVATE_EXTERN = NO;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 6.1;
+				ONLY_ACTIVE_ARCH = YES;
+				SDKROOT = iphoneos;
+			};
+			name = Debug;
+		};
+		970FDD4917A7A4DD008DC2FB /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				COPY_PHASE_STRIP = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu99;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 6.1;
+				OTHER_CFLAGS = "-DNS_BLOCK_ASSERTIONS=1";
+				SDKROOT = iphoneos;
+				VALIDATE_PRODUCT = YES;
+			};
+			name = Release;
+		};
+		970FDD9117A7A512008DC2FB /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				GCC_PRECOMPILE_PREFIX_HEADER = YES;
+				GCC_PREFIX_HEADER = "FadingScrollViewDemo/FadingScrollViewDemo-Prefix.pch";
+				INFOPLIST_FILE = "FadingScrollViewDemo/FadingScrollViewDemo-Info.plist";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				WRAPPER_EXTENSION = app;
+			};
+			name = Debug;
+		};
+		970FDD9217A7A512008DC2FB /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				GCC_PRECOMPILE_PREFIX_HEADER = YES;
+				GCC_PREFIX_HEADER = "FadingScrollViewDemo/FadingScrollViewDemo-Prefix.pch";
+				INFOPLIST_FILE = "FadingScrollViewDemo/FadingScrollViewDemo-Info.plist";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				WRAPPER_EXTENSION = app;
+			};
+			name = Release;
+		};
+/* End XCBuildConfiguration section */
+
+/* Begin XCConfigurationList section */
+		970FDD2217A7A4DC008DC2FB /* Build configuration list for PBXProject "FadingScrollView" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				970FDD4817A7A4DD008DC2FB /* Debug */,
+				970FDD4917A7A4DD008DC2FB /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		970FDD9017A7A512008DC2FB /* Build configuration list for PBXNativeTarget "FadingScrollViewDemo" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				970FDD9117A7A512008DC2FB /* Debug */,
+				970FDD9217A7A512008DC2FB /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+		};
+/* End XCConfigurationList section */
+	};
+	rootObject = 970FDD1F17A7A4DC008DC2FB /* Project object */;
+}
