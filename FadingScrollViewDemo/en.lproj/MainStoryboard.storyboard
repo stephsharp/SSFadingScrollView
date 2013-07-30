@@ -34,7 +34,7 @@ Morbi ornare, lacus et feugiat auctor, neque orci interdum dui, ut imperdiet lig
                                 </constraints>
                             </scrollView>
                         </subviews>
-                        <color key="backgroundColor" white="0.89758694559999996" alpha="1" colorSpace="calibratedWhite"/>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <constraints>
                             <constraint firstItem="Eio-F9-JcA" firstAttribute="trailing" secondItem="3" secondAttribute="trailing" type="default" id="Dom-O5-jVa"/>
                             <constraint firstItem="Eio-F9-JcA" firstAttribute="top" secondItem="3" secondAttribute="top" type="user" id="LRn-Mp-rn2"/>
