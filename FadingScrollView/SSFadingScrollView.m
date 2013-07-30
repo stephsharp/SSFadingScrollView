@@ -6,31 +6,10 @@
 #import "SSFadingScrollView.h"
 #import <QuartzCore/QuartzCore.h>
 
-static float const fadePercentage = 0.3;
+#define kScrollBarWidth 7
+#define kFadePercentage 0.1
 
 @implementation SSFadingScrollView
-//{
-//    CAGradientLayer * maskLayer;
-//}
-
-- (id)initWithFrame:(CGRect)frame
-{
-    self = [super initWithFrame:frame];
-    if (self) {
-
-    }
-    return self;
-}
-
-- (id)initWithCoder:(NSCoder *)coder
-{
-    self = [super initWithCoder:coder];
-    if (self) {
-
-    }
-    return self;
-}
-
 
 - (void)layoutSubviews
 {
@@ -43,8 +22,8 @@ static float const fadePercentage = 0.3;
     maskLayer.frame = self.bounds;
     
     CALayer * scrollGutterLayer = [CALayer layer];
-    scrollGutterLayer.frame = CGRectMake(self.bounds.size.width - 7, 0,
-                                         7, self.bounds.size.height);
+    scrollGutterLayer.frame = CGRectMake(self.bounds.size.width - kScrollBarWidth, 0,
+                                         kScrollBarWidth, self.bounds.size.height);
     scrollGutterLayer.backgroundColor = (__bridge CGColorRef)(opaque);
     
     CAGradientLayer * gradientLayer = [CAGradientLayer layer];
@@ -57,8 +36,8 @@ static float const fadePercentage = 0.3;
     // Set percentage of scrollview that fades at top & bottom
     gradientLayer.locations = [NSArray arrayWithObjects:
                                [NSNumber numberWithFloat:0],
-                               [NSNumber numberWithFloat:fadePercentage],
-                               [NSNumber numberWithFloat:1.0 - fadePercentage],
+                               [NSNumber numberWithFloat:kFadePercentage],
+                               [NSNumber numberWithFloat:1.0 - kFadePercentage],
                                [NSNumber numberWithFloat:1], nil];
     
     gradientLayer.startPoint=CGPointMake(0.5, 0);
