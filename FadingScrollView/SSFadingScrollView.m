@@ -160,22 +160,27 @@ typedef NS_ENUM(NSUInteger, FadeType) {
 - (void)layoutSubviews
 {
     [super layoutSubviews];
-    
+
+    self.layer.mask = [self maskLayer];
+}
+
+#pragma mark - Gradient mask
+
+- (CALayer *)maskLayer
+{
     CALayer *maskLayer = [CALayer layer];
     maskLayer.frame = self.bounds;
 
-    [maskLayer addSublayer:[self gradientLayer]];
+    [maskLayer addSublayer:[self gradientMaskLayer]];
 
     if (self.maskScrollBar) {
         [maskLayer addSublayer:[self scrollBarMaskLayer]];
     }
 
-    self.layer.mask = maskLayer;
+    return maskLayer;
 }
 
-#pragma mark Mask
-
-- (CALayer *)gradientLayer
+- (CALayer *)gradientMaskLayer
 {
     id transparent = (id)[self transparent];
     id opaque = (id)[self opaque];
@@ -204,31 +209,6 @@ typedef NS_ENUM(NSUInteger, FadeType) {
     return gradientLayer;
 }
 
-// fade distance is between 0 and 1
-- (CGFloat)topFadeDistance
-{
-    if (self.fadeType == FadeTypeHeight) {
-        return [self heightAsPercentage:self.topFadeHeight];
-    }
-
-    return self.topFadePercentage;
-}
-
-- (CGFloat)bottomFadeDistance
-{
-    if (self.fadeType == FadeTypeHeight) {
-        return [self heightAsPercentage:self.bottomFadeHeight];
-    }
-
-    return self.bottomFadePercentage;
-}
-
-- (CGFloat)heightAsPercentage:(CGFloat)height
-{
-    CGFloat scrollViewHeight = CGRectGetHeight(self.bounds);
-    return (scrollViewHeight > 0) ? (height / scrollViewHeight) : 0;
-}
-
 - (CALayer *)scrollBarMaskLayer
 {
     CALayer *scrollGutterLayer = [CALayer layer];
@@ -238,6 +218,31 @@ typedef NS_ENUM(NSUInteger, FadeType) {
     scrollGutterLayer.backgroundColor = [self opaque];
 
     return scrollGutterLayer;
+}
+
+// fade distance is between 0 and 1
+- (CGFloat)topFadeDistance
+{
+    if (self.fadeType == FadeTypeHeight) {
+        return [self percentageForHeight:self.topFadeHeight];
+    }
+
+    return self.topFadePercentage;
+}
+
+- (CGFloat)bottomFadeDistance
+{
+    if (self.fadeType == FadeTypeHeight) {
+        return [self percentageForHeight:self.bottomFadeHeight];
+    }
+
+    return self.bottomFadePercentage;
+}
+
+- (CGFloat)percentageForHeight:(CGFloat)height
+{
+    CGFloat scrollViewHeight = CGRectGetHeight(self.bounds);
+    return (scrollViewHeight > 0) ? (height / scrollViewHeight) : 0;
 }
 
 #pragma mark - Properties
