@@ -13,14 +13,11 @@ typedef NS_ENUM(NSUInteger, FadeEdges) {
 
 @interface SSFadingScrollView : UIScrollView
 
-// designated initializers
+- (instancetype)initWithFadePercentage:(CGFloat)fadePercentage edges:(FadeEdges)fadeEdges; // designated initializer
+- (instancetype)initWithFadePercentage:(CGFloat)fadePercentage; // top and bottom
+
 - (instancetype)initWithFadeHeight:(CGFloat)fadeHeight edges:(FadeEdges)fadeEdges;
-- (instancetype)initWithFadePercentage:(CGFloat)fadePercentage edges:(FadeEdges)fadeEdges;
-
-// top and bottom
-- (instancetype)initWithFadeHeight:(CGFloat)fadeHeight;
-- (instancetype)initWithFadePercentage:(CGFloat)fadePercentage;
-
+- (instancetype)initWithFadeHeight:(CGFloat)fadeHeight; // top and bottom
 // top and bottom with default fade height
 - (instancetype)init;
 

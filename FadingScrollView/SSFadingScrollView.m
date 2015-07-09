@@ -21,8 +21,6 @@ typedef NS_ENUM(NSUInteger, FadeType) {
 @property (nonatomic) FadeEdges fadeEdges;
 @property (nonatomic) CGFloat topFadePercentage;
 @property (nonatomic) CGFloat bottomFadePercentage;
-@property (nonatomic) CGFloat topFadeHeight;
-@property (nonatomic) CGFloat bottomFadeHeight;
 
 @end
 
@@ -44,33 +42,6 @@ typedef NS_ENUM(NSUInteger, FadeType) {
     self = [super initWithFrame:frame];
     if (self) {
         [self setDefaults];
-    }
-    return self;
-}
-
-- (instancetype)initWithFadeHeight:(CGFloat)fadeHeight edges:(FadeEdges)fadeEdges
-{
-    self = [super init];
-    if (self) {
-        self.fadeType = FadeTypeHeight;
-        self.fadeEdges = fadeEdges;
-
-        switch (fadeEdges) {
-            case FadeTopAndBottom:
-                [self fadeTopWithHeight:fadeHeight];
-                [self fadeBottomWithHeight:fadeHeight];
-                break;
-            case FadeTop:
-                [self fadeTopWithHeight:fadeHeight];
-                self.fadeBottom = NO;
-                break;
-            case FadeBottom:
-                [self fadeBottomWithHeight:fadeHeight];
-                self.fadeTop = NO;
-                break;
-            default:
-                break;
-        }
     }
     return self;
 }
@@ -102,14 +73,19 @@ typedef NS_ENUM(NSUInteger, FadeType) {
     return self;
 }
 
-- (instancetype)initWithFadeHeight:(CGFloat)fadeHeight
-{
-    return [self initWithFadeHeight:fadeHeight edges:FadeTopAndBottom];
-}
-
 - (instancetype)initWithFadePercentage:(CGFloat)fadePercentage
 {
     return [self initWithFadePercentage:fadePercentage edges:FadeTopAndBottom];
+}
+
+- (instancetype)initWithFadeHeight:(CGFloat)fadeHeight edges:(FadeEdges)fadeEdges
+{
+    return [self initWithFadePercentage:[self percentageForHeight:fadeHeight] edges:fadeEdges];
+}
+
+- (instancetype)initWithFadeHeight:(CGFloat)fadeHeight
+{
+    return [self initWithFadeHeight:fadeHeight edges:FadeTopAndBottom];
 }
 
 - (instancetype)init
@@ -124,8 +100,8 @@ typedef NS_ENUM(NSUInteger, FadeType) {
     self.fadeType = FadeTypeHeight;
     self.fadeTop = YES;
     self.fadeBottom = YES;
-    self.topFadeHeight = kDefaultFadeHeight;
-    self.bottomFadeHeight = kDefaultFadeHeight;
+    self.topFadePercentage = [self percentageForHeight:kDefaultFadeHeight];
+    self.bottomFadePercentage = [self percentageForHeight:kDefaultFadeHeight];
     self.maskScrollBar = NO;
 }
 
@@ -141,18 +117,6 @@ typedef NS_ENUM(NSUInteger, FadeType) {
     self.bottomFadePercentage = percentage;
 }
 
-- (void)fadeTopWithHeight:(CGFloat)height
-{
-    self.fadeTop = YES;
-    self.topFadeHeight = height;
-}
-
-- (void)fadeBottomWithHeight:(CGFloat)height
-{
-    self.fadeBottom = YES;
-    self.bottomFadeHeight = height;
-}
-
 #pragma mark - Layout
 
 // TODO: dont fade top if content offset is at top (and same for bottom edge)
@@ -162,6 +126,31 @@ typedef NS_ENUM(NSUInteger, FadeType) {
     [super layoutSubviews];
 
     self.layer.mask = [self maskLayer];
+}
+
+#pragma mark - Properties
+
+- (void)setFadeHeight:(CGFloat)fadeHeight
+{
+    self.topFadePercentage = [self percentageForHeight:fadeHeight];
+    self.bottomFadePercentage = [self percentageForHeight:fadeHeight];
+}
+
+- (void)setBounds:(CGRect)bounds
+{
+    // TODO: Refactor this to use percentage change between self.bounds and bounds?
+    if (self.fadeType == FadeTypeHeight) {
+        CGFloat topHeight = [self heightForPercentage:self.topFadePercentage];
+        CGFloat bottomHeight = [self heightForPercentage:self.bottomFadePercentage];
+
+        [super setBounds:bounds];
+
+        self.topFadePercentage = [self percentageForHeight:topHeight];
+        self.bottomFadePercentage = [self percentageForHeight:bottomHeight];
+    }
+    else {
+        [super setBounds:bounds];
+    }
 }
 
 #pragma mark - Gradient mask
@@ -194,11 +183,11 @@ typedef NS_ENUM(NSUInteger, FadeType) {
 
     if (self.fadeTop) {
         gradientColors = @[transparent, opaque];
-        gradientLocations = @[@(0), @([self topFadeDistance])];
+        gradientLocations = @[@(0), @(self.topFadePercentage)];
     }
     if (self.fadeBottom) {
         gradientColors = [gradientColors arrayByAddingObjectsFromArray:@[opaque, transparent]];
-        gradientLocations = [gradientLocations arrayByAddingObjectsFromArray:@[@(1.0f - [self bottomFadeDistance]), @(1)]];
+        gradientLocations = [gradientLocations arrayByAddingObjectsFromArray:@[@(1.0f - self.bottomFadePercentage), @(1)]];
     }
 
     gradientLayer.colors = gradientColors;
@@ -220,40 +209,18 @@ typedef NS_ENUM(NSUInteger, FadeType) {
     return scrollGutterLayer;
 }
 
-// fade distance is between 0 and 1
-- (CGFloat)topFadeDistance
-{
-    if (self.fadeType == FadeTypeHeight) {
-        return [self percentageForHeight:self.topFadeHeight];
-    }
-
-    return self.topFadePercentage;
-}
-
-- (CGFloat)bottomFadeDistance
-{
-    if (self.fadeType == FadeTypeHeight) {
-        return [self percentageForHeight:self.bottomFadeHeight];
-    }
-
-    return self.bottomFadePercentage;
-}
-
 - (CGFloat)percentageForHeight:(CGFloat)height
 {
     CGFloat scrollViewHeight = CGRectGetHeight(self.bounds);
     return (scrollViewHeight > 0) ? (height / scrollViewHeight) : 0;
 }
 
-#pragma mark - Properties
-
-- (void)setFadeHeight:(CGFloat)fadeHeight
+- (CGFloat)heightForPercentage:(CGFloat)percentage
 {
-    self.topFadeHeight = fadeHeight;
-    self.bottomFadeHeight = fadeHeight;
+    return CGRectGetHeight(self.bounds) * percentage;
 }
 
-#pragma mark - Mask colors
+#pragma mark Mask colors
 
 - (CGColorRef)opaque
 {
