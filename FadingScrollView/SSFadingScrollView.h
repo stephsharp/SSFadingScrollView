@@ -24,6 +24,7 @@ typedef NS_ENUM(NSUInteger, FadeEdges) {
 @property (nonatomic) IBInspectable BOOL fadeTop;
 @property (nonatomic) IBInspectable BOOL fadeBottom;
 @property (nonatomic) IBInspectable CGFloat fadeHeight;
+@property (nonatomic) IBInspectable double fadeDuration;
 
 // default NO, set to YES to mask the scroll bar so it isn't faded
 @property (nonatomic) IBInspectable BOOL maskScrollBar;

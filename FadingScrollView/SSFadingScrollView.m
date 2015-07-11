@@ -22,6 +22,9 @@ typedef NS_ENUM(NSUInteger, FadeType) {
 @property (nonatomic) CGFloat topFadePercentage;
 @property (nonatomic) CGFloat bottomFadePercentage;
 
+@property (nonatomic) CALayer *maskLayer;
+@property (nonatomic) CAGradientLayer *gradientLayer;
+
 @end
 
 @implementation SSFadingScrollView
@@ -102,6 +105,7 @@ typedef NS_ENUM(NSUInteger, FadeType) {
     self.fadeBottom = YES;
     self.topFadePercentage = [self percentageForHeight:kDefaultFadeHeight];
     self.bottomFadePercentage = [self percentageForHeight:kDefaultFadeHeight];
+    self.fadeDuration = 0.3;
     self.maskScrollBar = NO;
 }
 
@@ -119,16 +123,75 @@ typedef NS_ENUM(NSUInteger, FadeType) {
 
 #pragma mark - Layout
 
-// TODO: dont fade top if content offset is at top (and same for bottom edge)
-
 - (void)layoutSubviews
 {
     [super layoutSubviews];
 
-    self.layer.mask = [self maskLayer];
+    [CATransaction begin];
+    [CATransaction setDisableActions:YES];
+    self.maskLayer.frame = self.bounds;
+    [CATransaction commit];
+
+    if (self.fadeTop) {
+        if (self.contentOffset.y <= 0 && ![self topFadeIsHidden]) {
+            NSArray *colours = [self colorsArrayByReplacingFirstObjectWithColor:[self opaqueColor]];
+
+            // Fade out top gradient
+            [self animateGradientColours:colours];
+        }
+        else if (self.contentOffset.y > 0 && [self topFadeIsHidden]) {
+             NSArray *colours = [self colorsArrayByReplacingFirstObjectWithColor:[self transparentColor]];
+
+            // Fade in top gradient
+            [self animateGradientColours:colours];
+        }
+    }
+    else if (self.fadeBottom) {
+        // TODO: don't fade bottom of scrollview if contentOffset.y >= contentSize.height - bounds.size.height
+    }
+}
+
+- (BOOL)topFadeIsHidden
+{
+    CGColorRef firstColor = (__bridge CGColorRef)self.gradientLayer.colors.firstObject;
+    return firstColor == [self opaqueColor];
+}
+
+- (NSArray *)colorsArrayByReplacingFirstObjectWithColor:(CGColorRef)color
+{
+    NSMutableArray *mutableColours = [self.gradientLayer.colors mutableCopy];
+    mutableColours[0] = (__bridge id)color;
+
+    return [mutableColours copy];
+}
+
+- (void)animateGradientColours:(NSArray *)colours
+{
+    CABasicAnimation *animation;
+    animation = [CABasicAnimation animationWithKeyPath:@"colors"];
+    animation.fromValue = ((CAGradientLayer *)self.gradientLayer.presentationLayer).colors;
+    animation.toValue = colours;
+    // TODO: duration = total duration * percentage of total colour to fade
+    animation.duration = self.fadeDuration;
+    animation.timingFunction = [CAMediaTimingFunction functionWithName:kCAMediaTimingFunctionEaseOut];
+
+    [CATransaction begin];
+    [CATransaction setDisableActions:YES];
+    self.gradientLayer.colors = colours; // update the model value
+    [CATransaction commit];
+
+    [self.gradientLayer addAnimation:animation forKey:@"animateGradient"];
 }
 
 #pragma mark - Properties
+
+- (CALayer *)maskLayer
+{
+    if (!_maskLayer) {
+        _maskLayer = [self setupMaskLayer];
+    }
+    return _maskLayer;
+}
 
 - (void)setFadeHeight:(CGFloat)fadeHeight
 {
@@ -155,28 +218,32 @@ typedef NS_ENUM(NSUInteger, FadeType) {
 
 #pragma mark - Gradient mask
 
-- (CALayer *)maskLayer
+- (CALayer *)setupMaskLayer
 {
     CALayer *maskLayer = [CALayer layer];
     maskLayer.frame = self.bounds;
 
-    [maskLayer addSublayer:[self gradientMaskLayer]];
+    self.gradientLayer = [self setupGradientLayer];
+    [maskLayer addSublayer:self.gradientLayer];
 
     if (self.maskScrollBar) {
         [maskLayer addSublayer:[self scrollBarMaskLayer]];
     }
 
+    self.layer.mask = maskLayer;
+
     return maskLayer;
 }
 
-- (CALayer *)gradientMaskLayer
+- (CAGradientLayer *)setupGradientLayer
 {
-    id transparent = (id)[self transparent];
-    id opaque = (id)[self opaque];
+    id transparent = (id)[self transparentColor];
+    id opaque = (id)[self opaqueColor];
 
     CAGradientLayer *gradientLayer = [CAGradientLayer layer];
-    gradientLayer.frame = CGRectMake(self.bounds.origin.x, 0,
-                                     self.bounds.size.width, self.bounds.size.height);
+    CGRect frame = self.bounds;
+    frame.origin.y = 0;
+    gradientLayer.frame = frame;
 
     NSArray *gradientColors = [NSArray new];
     NSArray *gradientLocations = [NSArray new];
@@ -204,7 +271,7 @@ typedef NS_ENUM(NSUInteger, FadeType) {
     scrollGutterLayer.frame = CGRectMake(self.bounds.size.width - kDefaultScrollBarWidth, 0,
                                          kDefaultScrollBarWidth, self.bounds.size.height);
 
-    scrollGutterLayer.backgroundColor = [self opaque];
+    scrollGutterLayer.backgroundColor = [self opaqueColor];
 
     return scrollGutterLayer;
 }
@@ -222,12 +289,12 @@ typedef NS_ENUM(NSUInteger, FadeType) {
 
 #pragma mark Mask colors
 
-- (CGColorRef)opaque
+- (CGColorRef)opaqueColor
 {
     return [UIColor colorWithWhite:0 alpha:1].CGColor;
 }
 
-- (CGColorRef)transparent
+- (CGColorRef)transparentColor
 {
     return [UIColor colorWithWhite:0 alpha:0].CGColor;
 }

@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="7706" systemVersion="14D136" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" promptedForUpgradeToXcode5="NO" initialViewController="2">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="7706" systemVersion="14D136" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" initialViewController="2">
     <dependencies>
         <deployment identifier="iOS"/>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="7703"/>
@@ -21,8 +21,8 @@
                                 <rect key="frame" x="0.0" y="20" width="320" height="548"/>
                                 <subviews>
                                     <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" preferredMaxLayoutWidth="280" translatesAutoresizingMaskIntoConstraints="NO" id="Xlp-9H-yHd">
-                                        <rect key="frame" x="20" y="20" width="280" height="701.5"/>
-                                        <mutableString key="text">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Aenean nunc nisi, tincidunt nec nisl a, sodales volutpat dolor. Maecenas molestie a libero a lacinia. 
+                                        <rect key="frame" x="20" y="0.0" width="280" height="701.5"/>
+                                        <string key="text">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Aenean nunc nisi, tincidunt nec nisl a, sodales volutpat dolor. Maecenas molestie a libero a lacinia. 
 
 Fusce sodales euismod arcu, molestie viverra est mattis in. Donec pharetra ligula in elit aliquam ullamcorper. Praesent sed lobortis tellus. Aenean laoreet nibh vel pharetra dignissim. 
 
@@ -34,7 +34,7 @@ Morbi ornare, lacus et feugiat auctor, neque orci interdum dui, ut imperdiet lig
 
 Quisque volutpat, risus ac mattis commodo, lacus quam adipiscing nisl, id scelerisque ligula diam nec turpis. Donec malesuada, felis vitae tristique pretium, ante justo commodo ligula, id viverra nibh turpis quis massa. 
 
-Maecenas sagittis eu felis sed pellentesque. Integer varius justo sem, sed viverra leo suscipit id. Cum sociis natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus. </mutableString>
+Maecenas sagittis eu felis sed pellentesque. Integer varius justo sem, sed viverra leo suscipit id. Cum sociis natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus. </string>
                                         <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                         <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
                                         <nil key="highlightedColor"/>
@@ -42,10 +42,10 @@ Maecenas sagittis eu felis sed pellentesque. Integer varius justo sem, sed viver
                                 </subviews>
                                 <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                                 <constraints>
+                                    <constraint firstItem="Xlp-9H-yHd" firstAttribute="top" secondItem="Eio-F9-JcA" secondAttribute="top" id="772-Ht-dA2"/>
                                     <constraint firstAttribute="trailing" secondItem="Xlp-9H-yHd" secondAttribute="trailing" constant="20" symbolic="YES" id="NZS-Ei-Zp4"/>
                                     <constraint firstItem="Xlp-9H-yHd" firstAttribute="leading" secondItem="Eio-F9-JcA" secondAttribute="leading" constant="20" symbolic="YES" id="Zk3-8d-PeT"/>
-                                    <constraint firstAttribute="bottom" secondItem="Xlp-9H-yHd" secondAttribute="bottom" constant="20" symbolic="YES" id="kaU-U8-3kO"/>
-                                    <constraint firstItem="Xlp-9H-yHd" firstAttribute="top" secondItem="Eio-F9-JcA" secondAttribute="top" constant="20" symbolic="YES" id="qFL-p0-6x1"/>
+                                    <constraint firstAttribute="bottom" secondItem="Xlp-9H-yHd" secondAttribute="bottom" id="kaU-U8-3kO"/>
                                 </constraints>
                             </scrollView>
                         </subviews>
