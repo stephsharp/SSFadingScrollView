@@ -18,7 +18,6 @@ typedef NS_ENUM(NSUInteger, FadeType) {
 @interface SSFadingScrollView ()
 
 @property (nonatomic) FadeType fadeType;
-@property (nonatomic) FadeEdges fadeEdges;
 @property (nonatomic) CGFloat fadePercentage;
 @property (nonatomic) CALayer *maskLayer;
 @property (nonatomic) CAGradientLayer *gradientLayer;
@@ -49,13 +48,22 @@ typedef NS_ENUM(NSUInteger, FadeType) {
     return self;
 }
 
+- (void)setDefaults
+{
+    self.fadeType = FadeTypeHeight;
+    self.fadeTop = YES;
+    self.fadeBottom = YES;
+    self.fadePercentage = [self percentageForHeight:SSDefaultFadeHeight];
+    self.fadeDuration = 0.3;
+    self.maskScrollBar = NO;
+}
+
 // Designated initializer
 - (instancetype)initWithFadeType:(FadeType)fadeType percentage:(CGFloat)fadePercentage edges:(FadeEdges)fadeEdges
 {
     self = [super init];
     if (self) {
         self.fadeType = fadeType;
-        self.fadeEdges = fadeEdges;
         self.fadePercentage = fadePercentage;
 
         switch (fadeEdges) {
@@ -103,18 +111,6 @@ typedef NS_ENUM(NSUInteger, FadeType) {
 - (instancetype)init
 {
     return [self initWithFadeHeight:SSDefaultFadeHeight];
-}
-
-#pragma mark Initializer helpers
-
-- (void)setDefaults
-{
-    self.fadeType = FadeTypeHeight;
-    self.fadeTop = YES;
-    self.fadeBottom = YES;
-    self.fadePercentage = [self percentageForHeight:SSDefaultFadeHeight];
-    self.fadeDuration = 0.3;
-    self.maskScrollBar = NO;
 }
 
 #pragma mark - Layout
@@ -309,7 +305,7 @@ typedef NS_ENUM(NSUInteger, FadeType) {
     animation = [CABasicAnimation animationWithKeyPath:@"colors"];
     animation.fromValue = ((CAGradientLayer *)self.gradientLayer.presentationLayer).colors;
     animation.toValue = colours;
-    // TODO: duration = total duration * percentage of total colour to fade
+    // TODO: duration = total duration x percentage of total colour to fade
     animation.duration = self.fadeDuration;
     animation.timingFunction = [CAMediaTimingFunction functionWithName:kCAMediaTimingFunctionEaseOut];
 
