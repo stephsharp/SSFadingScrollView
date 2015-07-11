@@ -19,11 +19,11 @@ typedef NS_ENUM(NSUInteger, FadeType) {
 
 @property (nonatomic) FadeType fadeType;
 @property (nonatomic) FadeEdges fadeEdges;
-@property (nonatomic) CGFloat topFadePercentage;
-@property (nonatomic) CGFloat bottomFadePercentage;
-
+@property (nonatomic) CGFloat fadePercentage;
 @property (nonatomic) CALayer *maskLayer;
 @property (nonatomic) CAGradientLayer *gradientLayer;
+@property (nonatomic) BOOL topGradientIsHidden;
+@property (nonatomic) BOOL bottomGradientIsHidden;
 
 @end
 
@@ -49,31 +49,38 @@ typedef NS_ENUM(NSUInteger, FadeType) {
     return self;
 }
 
-- (instancetype)initWithFadePercentage:(CGFloat)fadePercentage edges:(FadeEdges)fadeEdges
+// Designated initializer
+- (instancetype)initWithFadeType:(FadeType)fadeType percentage:(CGFloat)fadePercentage edges:(FadeEdges)fadeEdges
 {
     self = [super init];
     if (self) {
-        self.fadeType = FadeTypePercentage;
+        self.fadeType = fadeType;
         self.fadeEdges = fadeEdges;
+        self.fadePercentage = fadePercentage;
 
         switch (fadeEdges) {
             case FadeTopAndBottom:
-                [self fadeTopWithPercentage:fadePercentage];
-                [self fadeBottomWithPercentage:fadePercentage];
+                self.fadeTop = YES;
+                self.fadeBottom = YES;
                 break;
             case FadeTop:
-                [self fadeTopWithPercentage:fadePercentage];
+                self.fadeTop = YES;
                 self.fadeBottom = NO;
                 break;
             case FadeBottom:
-                [self fadeBottomWithPercentage:fadePercentage];
                 self.fadeTop = NO;
+                self.fadeBottom = YES;
                 break;
             default:
                 break;
         }
     }
     return self;
+}
+
+- (instancetype)initWithFadePercentage:(CGFloat)fadePercentage edges:(FadeEdges)fadeEdges
+{
+    return [self initWithFadeType:FadeTypePercentage percentage:fadePercentage edges:fadeEdges];
 }
 
 - (instancetype)initWithFadePercentage:(CGFloat)fadePercentage
@@ -83,7 +90,9 @@ typedef NS_ENUM(NSUInteger, FadeType) {
 
 - (instancetype)initWithFadeHeight:(CGFloat)fadeHeight edges:(FadeEdges)fadeEdges
 {
-    return [self initWithFadePercentage:[self percentageForHeight:fadeHeight] edges:fadeEdges];
+    return [self initWithFadeType:FadeTypeHeight
+                       percentage:[self percentageForHeight:fadeHeight]
+                            edges:fadeEdges];
 }
 
 - (instancetype)initWithFadeHeight:(CGFloat)fadeHeight
@@ -103,22 +112,9 @@ typedef NS_ENUM(NSUInteger, FadeType) {
     self.fadeType = FadeTypeHeight;
     self.fadeTop = YES;
     self.fadeBottom = YES;
-    self.topFadePercentage = [self percentageForHeight:SSDefaultFadeHeight];
-    self.bottomFadePercentage = [self percentageForHeight:SSDefaultFadeHeight];
+    self.fadePercentage = [self percentageForHeight:SSDefaultFadeHeight];
     self.fadeDuration = 0.3;
     self.maskScrollBar = NO;
-}
-
-- (void)fadeTopWithPercentage:(CGFloat)percentage
-{
-    self.fadeTop = YES;
-    self.topFadePercentage = percentage;
-}
-
-- (void)fadeBottomWithPercentage:(CGFloat)percentage
-{
-    self.fadeBottom = YES;
-    self.bottomFadePercentage = percentage;
 }
 
 #pragma mark - Layout
@@ -127,60 +123,38 @@ typedef NS_ENUM(NSUInteger, FadeType) {
 {
     [super layoutSubviews];
 
+    [self updateMaskFrame];
+    [self updateGradients];
+}
+
+- (void)updateMaskFrame
+{
     [CATransaction begin];
     [CATransaction setDisableActions:YES];
     self.maskLayer.frame = self.bounds;
     [CATransaction commit];
+}
 
+- (void)updateGradients
+{
     if (self.fadeTop) {
-        if (self.contentOffset.y <= 0 && ![self topFadeIsHidden]) {
-            NSArray *colours = [self colorsArrayByReplacingFirstObjectWithColor:[SSFadingScrollView opaqueColor]];
-
-            // Fade out top gradient
-            [self animateGradientColours:colours];
+        if (!self.topGradientIsHidden && self.contentOffset.y <= 0) {
+            [self animateTopGradientToColor:[SSFadingScrollView opaqueColor]]; // fade out
         }
-        else if (self.contentOffset.y > 0 && [self topFadeIsHidden]) {
-             NSArray *colours = [self colorsArrayByReplacingFirstObjectWithColor:[SSFadingScrollView transparentColor]];
-
-            // Fade in top gradient
-            [self animateGradientColours:colours];
+        else if (self.topGradientIsHidden && self.contentOffset.y > 0) {
+            [self animateTopGradientToColor:[SSFadingScrollView transparentColor]]; // fade in
         }
     }
-    else if (self.fadeBottom) {
-        // TODO: don't fade bottom of scrollview if contentOffset.y >= contentSize.height - bounds.size.height
+    if (self.fadeBottom) {
+        CGFloat maxContentOffset = self.contentSize.height - CGRectGetHeight(self.bounds);
+
+        if (!self.bottomGradientIsHidden && self.contentOffset.y >= maxContentOffset) {
+            [self animateBottomGradientToColor:[SSFadingScrollView opaqueColor]];
+        }
+        else if (self.bottomGradientIsHidden && self.contentOffset.y < maxContentOffset) {
+            [self animateBottomGradientToColor:[SSFadingScrollView transparentColor]];
+        }
     }
-}
-
-- (BOOL)topFadeIsHidden
-{
-    CGColorRef firstColor = (__bridge CGColorRef)self.gradientLayer.colors.firstObject;
-    return CGColorEqualToColor(firstColor, [SSFadingScrollView opaqueColor]);
-}
-
-- (NSArray *)colorsArrayByReplacingFirstObjectWithColor:(CGColorRef)color
-{
-    NSMutableArray *mutableColours = [self.gradientLayer.colors mutableCopy];
-    mutableColours[0] = (__bridge id)color;
-
-    return [mutableColours copy];
-}
-
-- (void)animateGradientColours:(NSArray *)colours
-{
-    CABasicAnimation *animation;
-    animation = [CABasicAnimation animationWithKeyPath:@"colors"];
-    animation.fromValue = ((CAGradientLayer *)self.gradientLayer.presentationLayer).colors;
-    animation.toValue = colours;
-    // TODO: duration = total duration * percentage of total colour to fade
-    animation.duration = self.fadeDuration;
-    animation.timingFunction = [CAMediaTimingFunction functionWithName:kCAMediaTimingFunctionEaseOut];
-
-    [CATransaction begin];
-    [CATransaction setDisableActions:YES];
-    self.gradientLayer.colors = colours; // update the model value
-    [CATransaction commit];
-
-    [self.gradientLayer addAnimation:animation forKey:@"animateGradient"];
 }
 
 #pragma mark - Properties
@@ -195,25 +169,32 @@ typedef NS_ENUM(NSUInteger, FadeType) {
 
 - (void)setFadeHeight:(CGFloat)fadeHeight
 {
-    self.topFadePercentage = [self percentageForHeight:fadeHeight];
-    self.bottomFadePercentage = [self percentageForHeight:fadeHeight];
+    _fadeHeight = fadeHeight;
+    self.fadePercentage = [self percentageForHeight:fadeHeight];
 }
 
 - (void)setBounds:(CGRect)bounds
 {
-    // TODO: Refactor this to use percentage change between self.bounds and bounds?
+    [super setBounds:bounds];
+
     if (self.fadeType == FadeTypeHeight) {
-        CGFloat topHeight = [self heightForPercentage:self.topFadePercentage];
-        CGFloat bottomHeight = [self heightForPercentage:self.bottomFadePercentage];
-
-        [super setBounds:bounds];
-
-        self.topFadePercentage = [self percentageForHeight:topHeight];
-        self.bottomFadePercentage = [self percentageForHeight:bottomHeight];
+        // Update fade percentage for new bounds height
+        self.fadePercentage = [self percentageForHeight:self.fadeHeight];
     }
-    else {
-        [super setBounds:bounds];
-    }
+}
+
+#pragma mark Computed properties
+
+- (BOOL)topGradientIsHidden
+{
+    CGColorRef firstColor = (__bridge CGColorRef)self.gradientLayer.colors.firstObject;
+    return CGColorEqualToColor(firstColor, [SSFadingScrollView opaqueColor]);
+}
+
+- (BOOL)bottomGradientIsHidden
+{
+    CGColorRef lastColor = (__bridge CGColorRef)self.gradientLayer.colors.lastObject;
+    return CGColorEqualToColor(lastColor, [SSFadingScrollView opaqueColor]);
 }
 
 #pragma mark - Gradient mask
@@ -250,11 +231,11 @@ typedef NS_ENUM(NSUInteger, FadeType) {
 
     if (self.fadeTop) {
         gradientColors = @[transparent, opaque];
-        gradientLocations = @[@(0), @(self.topFadePercentage)];
+        gradientLocations = @[@(0), @(self.fadePercentage)];
     }
     if (self.fadeBottom) {
         gradientColors = [gradientColors arrayByAddingObjectsFromArray:@[opaque, transparent]];
-        gradientLocations = [gradientLocations arrayByAddingObjectsFromArray:@[@(1.0f - self.bottomFadePercentage), @(1)]];
+        gradientLocations = [gradientLocations arrayByAddingObjectsFromArray:@[@(1.0f - self.fadePercentage), @(1)]];
     }
 
     gradientLayer.colors = gradientColors;
@@ -268,8 +249,8 @@ typedef NS_ENUM(NSUInteger, FadeType) {
 - (CALayer *)scrollBarMaskLayer
 {
     CALayer *scrollGutterLayer = [CALayer layer];
-    scrollGutterLayer.frame = CGRectMake(self.bounds.size.width - SSDefaultScrollBarWidth, 0,
-                                         SSDefaultScrollBarWidth, self.bounds.size.height);
+    scrollGutterLayer.frame = CGRectMake(CGRectGetHeight(self.bounds) - SSDefaultScrollBarWidth, 0,
+                                         SSDefaultScrollBarWidth, CGRectGetHeight(self.bounds));
 
     scrollGutterLayer.backgroundColor = [SSFadingScrollView opaqueColor];
 
@@ -287,7 +268,7 @@ typedef NS_ENUM(NSUInteger, FadeType) {
     return CGRectGetHeight(self.bounds) * percentage;
 }
 
-#pragma mark Mask colors
+#pragma mark Gradient mask colors
 
 + (CGColorRef)opaqueColor
 {
@@ -297,6 +278,47 @@ typedef NS_ENUM(NSUInteger, FadeType) {
 + (CGColorRef)transparentColor
 {
     return [UIColor clearColor].CGColor;
+}
+
+#pragma mark Gradient animation
+
+- (void)animateTopGradientToColor:(CGColorRef)color
+{
+    NSArray *colours = [self colorsArrayByReplacingObjectAtIndex:0 withColor:color];
+    [self animateGradientColours:colours];
+}
+
+- (void)animateBottomGradientToColor:(CGColorRef)color
+{
+    NSUInteger lastIndex = self.gradientLayer.colors.count - 1;
+    NSArray *colours = [self colorsArrayByReplacingObjectAtIndex:lastIndex withColor:color];
+    [self animateGradientColours:colours];
+}
+
+- (NSArray *)colorsArrayByReplacingObjectAtIndex:(NSUInteger)index withColor:(CGColorRef)color
+{
+    NSMutableArray *mutableColours = [self.gradientLayer.colors mutableCopy];
+    mutableColours[index] = (__bridge id)color;
+
+    return [mutableColours copy];
+}
+
+- (void)animateGradientColours:(NSArray *)colours
+{
+    CABasicAnimation *animation;
+    animation = [CABasicAnimation animationWithKeyPath:@"colors"];
+    animation.fromValue = ((CAGradientLayer *)self.gradientLayer.presentationLayer).colors;
+    animation.toValue = colours;
+    // TODO: duration = total duration * percentage of total colour to fade
+    animation.duration = self.fadeDuration;
+    animation.timingFunction = [CAMediaTimingFunction functionWithName:kCAMediaTimingFunctionEaseOut];
+
+    [CATransaction begin];
+    [CATransaction setDisableActions:YES];
+    self.gradientLayer.colors = colours; // update the model value
+    [CATransaction commit];
+
+    [self.gradientLayer addAnimation:animation forKey:@"animateGradient"];
 }
 
 @end
