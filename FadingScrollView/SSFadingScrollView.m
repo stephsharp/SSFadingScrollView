@@ -7,8 +7,8 @@
 #import <QuartzCore/QuartzCore.h>
 
 // TODO: check scrollbar width is still the same on iOS 7+ as it was on iOS 6
-static CGFloat const kDefaultScrollBarWidth = 7.0f;
-static CGFloat const kDefaultFadeHeight = 30.0f;
+static CGFloat const SSDefaultScrollBarWidth = 7.0f;
+static CGFloat const SSDefaultFadeHeight = 30.0f;
 
 typedef NS_ENUM(NSUInteger, FadeType) {
     FadeTypePercentage,
@@ -93,7 +93,7 @@ typedef NS_ENUM(NSUInteger, FadeType) {
 
 - (instancetype)init
 {
-    return [self initWithFadeHeight:kDefaultFadeHeight];
+    return [self initWithFadeHeight:SSDefaultFadeHeight];
 }
 
 #pragma mark Initializer helpers
@@ -103,8 +103,8 @@ typedef NS_ENUM(NSUInteger, FadeType) {
     self.fadeType = FadeTypeHeight;
     self.fadeTop = YES;
     self.fadeBottom = YES;
-    self.topFadePercentage = [self percentageForHeight:kDefaultFadeHeight];
-    self.bottomFadePercentage = [self percentageForHeight:kDefaultFadeHeight];
+    self.topFadePercentage = [self percentageForHeight:SSDefaultFadeHeight];
+    self.bottomFadePercentage = [self percentageForHeight:SSDefaultFadeHeight];
     self.fadeDuration = 0.3;
     self.maskScrollBar = NO;
 }
@@ -268,8 +268,8 @@ typedef NS_ENUM(NSUInteger, FadeType) {
 - (CALayer *)scrollBarMaskLayer
 {
     CALayer *scrollGutterLayer = [CALayer layer];
-    scrollGutterLayer.frame = CGRectMake(self.bounds.size.width - kDefaultScrollBarWidth, 0,
-                                         kDefaultScrollBarWidth, self.bounds.size.height);
+    scrollGutterLayer.frame = CGRectMake(self.bounds.size.width - SSDefaultScrollBarWidth, 0,
+                                         SSDefaultScrollBarWidth, self.bounds.size.height);
 
     scrollGutterLayer.backgroundColor = [SSFadingScrollView opaqueColor];
 
