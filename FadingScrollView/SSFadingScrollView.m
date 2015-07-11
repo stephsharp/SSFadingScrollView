@@ -134,13 +134,13 @@ typedef NS_ENUM(NSUInteger, FadeType) {
 
     if (self.fadeTop) {
         if (self.contentOffset.y <= 0 && ![self topFadeIsHidden]) {
-            NSArray *colours = [self colorsArrayByReplacingFirstObjectWithColor:[self opaqueColor]];
+            NSArray *colours = [self colorsArrayByReplacingFirstObjectWithColor:[SSFadingScrollView opaqueColor]];
 
             // Fade out top gradient
             [self animateGradientColours:colours];
         }
         else if (self.contentOffset.y > 0 && [self topFadeIsHidden]) {
-             NSArray *colours = [self colorsArrayByReplacingFirstObjectWithColor:[self transparentColor]];
+             NSArray *colours = [self colorsArrayByReplacingFirstObjectWithColor:[SSFadingScrollView transparentColor]];
 
             // Fade in top gradient
             [self animateGradientColours:colours];
@@ -154,7 +154,7 @@ typedef NS_ENUM(NSUInteger, FadeType) {
 - (BOOL)topFadeIsHidden
 {
     CGColorRef firstColor = (__bridge CGColorRef)self.gradientLayer.colors.firstObject;
-    return firstColor == [self opaqueColor];
+    return CGColorEqualToColor(firstColor, [SSFadingScrollView opaqueColor]);
 }
 
 - (NSArray *)colorsArrayByReplacingFirstObjectWithColor:(CGColorRef)color
@@ -237,8 +237,8 @@ typedef NS_ENUM(NSUInteger, FadeType) {
 
 - (CAGradientLayer *)setupGradientLayer
 {
-    id transparent = (id)[self transparentColor];
-    id opaque = (id)[self opaqueColor];
+    id transparent = (id)[SSFadingScrollView transparentColor];
+    id opaque = (id)[SSFadingScrollView opaqueColor];
 
     CAGradientLayer *gradientLayer = [CAGradientLayer layer];
     CGRect frame = self.bounds;
@@ -271,7 +271,7 @@ typedef NS_ENUM(NSUInteger, FadeType) {
     scrollGutterLayer.frame = CGRectMake(self.bounds.size.width - kDefaultScrollBarWidth, 0,
                                          kDefaultScrollBarWidth, self.bounds.size.height);
 
-    scrollGutterLayer.backgroundColor = [self opaqueColor];
+    scrollGutterLayer.backgroundColor = [SSFadingScrollView opaqueColor];
 
     return scrollGutterLayer;
 }
@@ -289,14 +289,14 @@ typedef NS_ENUM(NSUInteger, FadeType) {
 
 #pragma mark Mask colors
 
-- (CGColorRef)opaqueColor
++ (CGColorRef)opaqueColor
 {
-    return [UIColor colorWithWhite:0 alpha:1].CGColor;
+    return [UIColor blackColor].CGColor;
 }
 
-- (CGColorRef)transparentColor
++ (CGColorRef)transparentColor
 {
-    return [UIColor colorWithWhite:0 alpha:0].CGColor;
+    return [UIColor clearColor].CGColor;
 }
 
 @end
