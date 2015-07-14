@@ -10,11 +10,6 @@
 static CGFloat const SSDefaultScrollBarWidth = 7.0f;
 static CGFloat const SSDefaultFadeHeight = 30.0f;
 
-typedef NS_ENUM(NSUInteger, FadeType) {
-    FadeTypePercentage,
-    FadeTypeHeight
-};
-
 @interface SSFadingScrollView ()
 
 @property (nonatomic) FadeType fadeType;
@@ -30,52 +25,23 @@ typedef NS_ENUM(NSUInteger, FadeType) {
 
 #pragma mark - Initializers
 
-- (instancetype)initWithCoder:(NSCoder *)coder
-{
-    self = [super initWithCoder:coder];
-    if (self) {
-        [self setDefaults];
-    }
-    return self;
-}
-
-- (instancetype)initWithFrame:(CGRect)frame
-{
-    self = [super initWithFrame:frame];
-    if (self) {
-        [self setDefaults];
-    }
-    return self;
-}
-
-- (void)setDefaults
-{
-    self.fadeType = FadeTypeHeight;
-    self.fadeTop = YES;
-    self.fadeBottom = YES;
-    self.fadePercentage = [self percentageForHeight:SSDefaultFadeHeight];
-    self.fadeDuration = 0.3;
-    self.maskScrollBar = NO;
-}
-
-// Designated initializer
 - (instancetype)initWithFadeType:(FadeType)fadeType percentage:(CGFloat)fadePercentage edges:(FadeEdges)fadeEdges
 {
-    self = [super init];
+    self = [super initWithFrame:CGRectZero];
     if (self) {
         self.fadeType = fadeType;
         self.fadePercentage = fadePercentage;
 
         switch (fadeEdges) {
-            case FadeTopAndBottom:
+            case FadeEdgesTopAndBottom:
                 self.fadeTop = YES;
                 self.fadeBottom = YES;
                 break;
-            case FadeTop:
+            case FadeEdgesTop:
                 self.fadeTop = YES;
                 self.fadeBottom = NO;
                 break;
-            case FadeBottom:
+            case FadeEdgesBottom:
                 self.fadeTop = NO;
                 self.fadeBottom = YES;
                 break;
@@ -93,7 +59,7 @@ typedef NS_ENUM(NSUInteger, FadeType) {
 
 - (instancetype)initWithFadePercentage:(CGFloat)fadePercentage
 {
-    return [self initWithFadePercentage:fadePercentage edges:FadeTopAndBottom];
+    return [self initWithFadePercentage:fadePercentage edges:FadeEdgesTopAndBottom];
 }
 
 - (instancetype)initWithFadeHeight:(CGFloat)fadeHeight edges:(FadeEdges)fadeEdges
@@ -105,12 +71,41 @@ typedef NS_ENUM(NSUInteger, FadeType) {
 
 - (instancetype)initWithFadeHeight:(CGFloat)fadeHeight
 {
-    return [self initWithFadeHeight:fadeHeight edges:FadeTopAndBottom];
+    return [self initWithFadeHeight:fadeHeight edges:FadeEdgesTopAndBottom];
 }
 
 - (instancetype)init
 {
     return [self initWithFadeHeight:SSDefaultFadeHeight];
+}
+
+- (instancetype)initWithFrame:(CGRect)frame
+{
+    self = [self init];
+    if (self) {
+        [self setDefaults];
+        self.frame = frame;
+    }
+    return self;
+}
+
+- (instancetype)initWithCoder:(NSCoder *)coder
+{
+    self = [super initWithCoder:coder];
+    if (self) {
+        [self setDefaults];
+    }
+    return self;
+}
+
+- (void)setDefaults
+{
+    self.fadeType = FadeTypeHeight;
+    self.fadeTop = YES;
+    self.fadeBottom = YES;
+    self.fadePercentage = [self percentageForHeight:SSDefaultFadeHeight];
+    self.fadeDuration = 0.3;
+    self.maskScrollBar = NO;
 }
 
 #pragma mark - Layout
