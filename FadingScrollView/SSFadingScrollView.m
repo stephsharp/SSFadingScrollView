@@ -158,23 +158,30 @@ static CGFloat const SSDefaultFadeHeight = 30.0f;
     return _maskLayer;
 }
 
-- (void)setFadeHeight:(CGFloat)fadeHeight
-{
-    _fadeHeight = fadeHeight;
-    self.fadePercentage = [self percentageForHeight:fadeHeight];
-}
-
 - (void)setBounds:(CGRect)bounds
 {
+    CGFloat previousHeight = self.fadeHeight;
+    CGSize previousSize = self.bounds.size;
+
     [super setBounds:bounds];
 
-    if (self.fadeType == FadeTypeHeight) {
+    if (!CGSizeEqualToSize(previousSize, bounds.size) && self.fadeType == FadeTypeHeight) {
         // Update fade percentage for new bounds height
-        self.fadePercentage = [self percentageForHeight:self.fadeHeight];
+        self.fadePercentage = [self percentageForHeight:previousHeight];
     }
 }
 
 #pragma mark Computed properties
+
+- (CGFloat)fadeHeight
+{
+    return [self heightForPercentage:self.fadePercentage];
+}
+
+- (void)setFadeHeight:(CGFloat)fadeHeight
+{
+    self.fadePercentage = [self percentageForHeight:fadeHeight];
+}
 
 - (BOOL)topGradientIsHidden
 {
