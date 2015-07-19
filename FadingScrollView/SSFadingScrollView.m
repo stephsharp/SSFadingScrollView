@@ -6,9 +6,8 @@
 #import "SSFadingScrollView.h"
 #import <QuartzCore/QuartzCore.h>
 
-// TODO: check scrollbar width is still the same on iOS 7+ as it was on iOS 6
-static CGFloat const SSDefaultScrollBarWidth = 7.0f;
 static CGFloat const SSDefaultFadeHeight = 30.0f;
+static void *SSContext = &SSContext;
 
 @interface SSFadingScrollView ()
 
@@ -18,6 +17,11 @@ static CGFloat const SSDefaultFadeHeight = 30.0f;
 @property (nonatomic) CAGradientLayer *gradientLayer;
 @property (nonatomic) BOOL topGradientIsHidden;
 @property (nonatomic) BOOL bottomGradientIsHidden;
+
+@property (nonatomic) UIImageView *verticalScrollBar;
+@property (nonatomic) UIImageView *horizontalScrollBar;
+@property (nonatomic) CALayer *verticalScrollBarLayer;
+@property (nonatomic) CALayer *horizontalScrollBarLayer;
 
 @end
 
@@ -105,7 +109,16 @@ static CGFloat const SSDefaultFadeHeight = 30.0f;
     self.fadeBottom = YES;
     self.fadePercentage = [self percentageForHeight:SSDefaultFadeHeight];
     self.fadeDuration = 0.3;
-    self.maskScrollBar = NO;
+}
+
+- (void)dealloc
+{
+    if (_verticalScrollBar) {
+        [_verticalScrollBar removeObserver:self forKeyPath:@"alpha" context:SSContext];
+    }
+    if (_horizontalScrollBar) {
+        [_horizontalScrollBar removeObserver:self forKeyPath:@"alpha" context:SSContext];
+    }
 }
 
 #pragma mark - Layout
@@ -116,6 +129,7 @@ static CGFloat const SSDefaultFadeHeight = 30.0f;
 
     [self updateMaskFrame];
     [self updateGradients];
+    [self updateScrollBarMasks];
 }
 
 - (void)updateMaskFrame
@@ -158,6 +172,24 @@ static CGFloat const SSDefaultFadeHeight = 30.0f;
     return _maskLayer;
 }
 
+- (CALayer *)verticalScrollBarLayer
+{
+    if (!_verticalScrollBarLayer) {
+        _verticalScrollBarLayer = [self setupVerticalScrollBarLayer];
+    }
+
+    return _verticalScrollBarLayer;
+}
+
+- (CALayer *)horizontalScrollBarLayer
+{
+    if (!_horizontalScrollBarLayer) {
+        _horizontalScrollBarLayer = [self setupHorizontalScrollBarLayer];
+    }
+
+    return _horizontalScrollBarLayer;
+}
+
 - (void)setBounds:(CGRect)bounds
 {
     CGFloat previousHeight = self.fadeHeight;
@@ -195,7 +227,7 @@ static CGFloat const SSDefaultFadeHeight = 30.0f;
     return CGColorEqualToColor(lastColor, [SSFadingScrollView opaqueColor]);
 }
 
-#pragma mark - Gradient mask
+#pragma mark - Mask
 
 - (CALayer *)setupMaskLayer
 {
@@ -205,14 +237,29 @@ static CGFloat const SSDefaultFadeHeight = 30.0f;
     self.gradientLayer = [self setupGradientLayer];
     [maskLayer addSublayer:self.gradientLayer];
 
-    if (self.maskScrollBar) {
-        [maskLayer addSublayer:[self scrollBarMaskLayer]];
+    if (self.maskScrollBars) {
+        [maskLayer addSublayer:self.verticalScrollBarLayer];
+        [maskLayer addSublayer:self.horizontalScrollBarLayer];
     }
 
     self.layer.mask = maskLayer;
 
     return maskLayer;
 }
+
+#pragma mark Mask colors
+
++ (CGColorRef)opaqueColor
+{
+    return [UIColor blackColor].CGColor;
+}
+
++ (CGColorRef)transparentColor
+{
+    return [UIColor clearColor].CGColor;
+}
+
+#pragma mark - Gradient mask
 
 - (CAGradientLayer *)setupGradientLayer
 {
@@ -244,17 +291,6 @@ static CGFloat const SSDefaultFadeHeight = 30.0f;
     return gradientLayer;
 }
 
-- (CALayer *)scrollBarMaskLayer
-{
-    CALayer *scrollGutterLayer = [CALayer layer];
-    scrollGutterLayer.frame = CGRectMake(CGRectGetHeight(self.bounds) - SSDefaultScrollBarWidth, 0,
-                                         SSDefaultScrollBarWidth, CGRectGetHeight(self.bounds));
-
-    scrollGutterLayer.backgroundColor = [SSFadingScrollView opaqueColor];
-
-    return scrollGutterLayer;
-}
-
 - (CGFloat)percentageForHeight:(CGFloat)height
 {
     CGFloat scrollViewHeight = CGRectGetHeight(self.bounds);
@@ -264,18 +300,6 @@ static CGFloat const SSDefaultFadeHeight = 30.0f;
 - (CGFloat)heightForPercentage:(CGFloat)percentage
 {
     return CGRectGetHeight(self.bounds) * percentage;
-}
-
-#pragma mark Gradient mask colors
-
-+ (CGColorRef)opaqueColor
-{
-    return [UIColor blackColor].CGColor;
-}
-
-+ (CGColorRef)transparentColor
-{
-    return [UIColor clearColor].CGColor;
 }
 
 #pragma mark Gradient animation
@@ -307,7 +331,6 @@ static CGFloat const SSDefaultFadeHeight = 30.0f;
     animation = [CABasicAnimation animationWithKeyPath:@"colors"];
     animation.fromValue = ((CAGradientLayer *)self.gradientLayer.presentationLayer).colors;
     animation.toValue = colours;
-    // TODO: duration = total duration x percentage of total colour to fade
     animation.duration = self.fadeDuration;
     animation.timingFunction = [CAMediaTimingFunction functionWithName:kCAMediaTimingFunctionEaseOut];
 
@@ -317,6 +340,97 @@ static CGFloat const SSDefaultFadeHeight = 30.0f;
     [CATransaction commit];
 
     [self.gradientLayer addAnimation:animation forKey:@"animateGradient"];
+}
+
+#pragma mark - Scroll bar mask
+
+- (CALayer *)setupVerticalScrollBarLayer
+{
+    if (!self.verticalScrollBar) {
+        [self findScrollBars];
+
+        if (!self.verticalScrollBar) {
+            return nil;
+        }
+    }
+
+    [self.verticalScrollBar addObserver:self forKeyPath:@"alpha" options:0 context:SSContext];
+
+    return [self scrollBarLayerWithFrame:self.verticalScrollBar.frame];
+}
+
+- (CALayer *)setupHorizontalScrollBarLayer
+{
+    if (!self.horizontalScrollBar) {
+        [self findScrollBars];
+
+        if (!self.horizontalScrollBar) {
+            return nil;
+        }
+    }
+
+    [self.horizontalScrollBar addObserver:self forKeyPath:@"alpha" options:0 context:SSContext];
+
+    return [self scrollBarLayerWithFrame:self.horizontalScrollBar.frame];
+}
+
+- (void)findScrollBars
+{
+    for (UIView *subview in self.subviews) {
+        if ([subview isKindOfClass:[UIImageView class]] && subview.tag == 0) {
+            UIImageView *imageView = (UIImageView *)subview;
+
+            if (imageView.frame.size.width == 3.5f ||
+                imageView.frame.size.width == 2.5f ||
+                (imageView.frame.size.width < 2.4f && imageView.frame.size.width > 2.3f))
+            {
+                self.verticalScrollBar = imageView;
+            }
+            else if (imageView.frame.size.height == 3.5f ||
+                     imageView.frame.size.height == 2.5f ||
+                     (imageView.frame.size.height < 2.4f && imageView.frame.size.height > 2.3f))
+            {
+                self.horizontalScrollBar = imageView;
+            }
+        }
+    }
+}
+
+- (CALayer *)scrollBarLayerWithFrame:(CGRect)frame
+{
+    CALayer *scrollBarLayer = [CALayer layer];
+    scrollBarLayer.backgroundColor = [SSFadingScrollView opaqueColor];
+    scrollBarLayer.frame = frame;
+
+    return scrollBarLayer;
+}
+
+- (void)updateScrollBarMasks
+{
+    if (self.maskScrollBars) {
+        [CATransaction begin];
+        [CATransaction setDisableActions:YES];
+
+        CGRect verticalScrollBarFrame = [self.layer convertRect:self.verticalScrollBar.frame toLayer:self.maskLayer];
+        self.verticalScrollBarLayer.frame = verticalScrollBarFrame;
+        self.verticalScrollBarLayer.opacity = self.verticalScrollBar.alpha;
+
+        CGRect horizontalScrollBarFrame = [self.layer convertRect:self.horizontalScrollBar.frame toLayer:self.maskLayer];
+        self.horizontalScrollBarLayer.frame = horizontalScrollBarFrame;
+        self.horizontalScrollBarLayer.opacity = self.horizontalScrollBar.alpha;
+
+        [CATransaction commit];
+    }
+}
+
+- (void)observeValueForKeyPath:(NSString *)keyPath ofObject:(id)object change:(NSDictionary *)change context:(void *)context {
+    if (context != SSContext) {
+        return;
+    }
+
+    if([keyPath isEqualToString:@"alpha"] && [object valueForKeyPath:keyPath] != [NSNull null]) {
+        [self layoutSubviews];
+    }
 }
 
 @end

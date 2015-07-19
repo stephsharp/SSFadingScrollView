@@ -47,6 +47,9 @@ Maecenas sagittis eu felis sed pellentesque. Integer varius justo sem, sed viver
                                     <constraint firstItem="Xlp-9H-yHd" firstAttribute="leading" secondItem="Eio-F9-JcA" secondAttribute="leading" constant="20" symbolic="YES" id="Zk3-8d-PeT"/>
                                     <constraint firstAttribute="bottom" secondItem="Xlp-9H-yHd" secondAttribute="bottom" id="kaU-U8-3kO"/>
                                 </constraints>
+                                <userDefinedRuntimeAttributes>
+                                    <userDefinedRuntimeAttribute type="boolean" keyPath="maskScrollBars" value="YES"/>
+                                </userDefinedRuntimeAttributes>
                             </scrollView>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
