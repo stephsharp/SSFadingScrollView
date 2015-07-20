@@ -90,6 +90,7 @@ static void *SSContext = &SSContext;
     _fadeBottom = YES;
     _fadeHeight = SSDefaultFadeHeight;
     _fadeDuration = SSDefaultFadeDuration;
+    _maskScrollBars = YES;
 }
 
 - (void)dealloc

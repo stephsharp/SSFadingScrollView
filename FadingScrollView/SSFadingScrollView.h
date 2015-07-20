@@ -23,7 +23,7 @@ typedef NS_ENUM(NSUInteger, FadeEdges) {
 @property (nonatomic) IBInspectable CGFloat fadeHeight; // default = 30.0f
 @property (nonatomic) IBInspectable double fadeDuration;
 
-// Default NO, set to YES to mask the scroll bars so they aren't faded
+// Default YES, set to NO to fade the scroll bars with the gradient
 // Masking scrollbars works for iOS 7+
 @property (nonatomic) IBInspectable BOOL maskScrollBars;
 
