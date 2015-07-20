@@ -33,21 +33,21 @@ static void *SSContext = &SSContext;
 {
     self = [super initWithFrame:CGRectZero];
     if (self) {
-        self.fadeType = fadeType;
-        self.fadePercentage = fadePercentage;
+        _fadeType = fadeType;
+        _fadePercentage = fadePercentage;
 
         switch (fadeEdges) {
             case FadeEdgesTopAndBottom:
-                self.fadeTop = YES;
-                self.fadeBottom = YES;
+                _fadeTop = YES;
+                _fadeBottom = YES;
                 break;
             case FadeEdgesTop:
-                self.fadeTop = YES;
-                self.fadeBottom = NO;
+                _fadeTop = YES;
+                _fadeBottom = NO;
                 break;
             case FadeEdgesBottom:
-                self.fadeTop = NO;
-                self.fadeBottom = YES;
+                _fadeTop = NO;
+                _fadeBottom = YES;
                 break;
             default:
                 break;
@@ -104,11 +104,11 @@ static void *SSContext = &SSContext;
 
 - (void)setDefaults
 {
-    self.fadeType = FadeTypeHeight;
-    self.fadeTop = YES;
-    self.fadeBottom = YES;
-    self.fadePercentage = [self percentageForHeight:SSDefaultFadeHeight];
-    self.fadeDuration = 0.3;
+    _fadeType = FadeTypeHeight;
+    _fadeTop = YES;
+    _fadeBottom = YES;
+    _fadePercentage = [self percentageForHeight:SSDefaultFadeHeight];
+    _fadeDuration = 0.3;
 }
 
 - (void)dealloc
