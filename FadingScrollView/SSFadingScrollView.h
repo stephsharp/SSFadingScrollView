@@ -5,11 +5,6 @@
 
 #import <UIKit/UIKit.h>
 
-typedef NS_ENUM(NSUInteger, FadeType) {
-    FadeTypePercentage,
-    FadeTypeHeight
-};
-
 typedef NS_ENUM(NSUInteger, FadeEdges) {
     FadeEdgesTopAndBottom,
     FadeEdgesTop,
@@ -19,10 +14,6 @@ typedef NS_ENUM(NSUInteger, FadeEdges) {
 @interface SSFadingScrollView : UIScrollView
 
 // designated initializer
-- (instancetype)initWithFadeType:(FadeType)fadeType percentage:(CGFloat)fadePercentage edges:(FadeEdges)fadeEdges;
-- (instancetype)initWithFadePercentage:(CGFloat)fadePercentage edges:(FadeEdges)fadeEdges;
-- (instancetype)initWithFadePercentage:(CGFloat)fadePercentage; // top and bottom
-
 - (instancetype)initWithFadeHeight:(CGFloat)fadeHeight edges:(FadeEdges)fadeEdges;
 - (instancetype)initWithFadeHeight:(CGFloat)fadeHeight; // top and bottom
 - (instancetype)init; // top and bottom with default fade height

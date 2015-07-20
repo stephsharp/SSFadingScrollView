@@ -7,12 +7,11 @@
 #import <QuartzCore/QuartzCore.h>
 
 static CGFloat const SSDefaultFadeHeight = 30.0f;
+static CFTimeInterval const SSDefaultFadeDuration = 0.3f;
 static void *SSContext = &SSContext;
 
 @interface SSFadingScrollView ()
 
-@property (nonatomic) FadeType fadeType;
-@property (nonatomic) CGFloat fadePercentage;
 @property (nonatomic) CALayer *maskLayer;
 @property (nonatomic) CAGradientLayer *gradientLayer;
 @property (nonatomic) BOOL topGradientIsHidden;
@@ -29,12 +28,12 @@ static void *SSContext = &SSContext;
 
 #pragma mark - Initializers
 
-- (instancetype)initWithFadeType:(FadeType)fadeType percentage:(CGFloat)fadePercentage edges:(FadeEdges)fadeEdges
+- (instancetype)initWithFadeHeight:(CGFloat)fadeHeight edges:(FadeEdges)fadeEdges
 {
     self = [super initWithFrame:CGRectZero];
     if (self) {
-        _fadeType = fadeType;
-        _fadePercentage = fadePercentage;
+        _fadeHeight = fadeHeight;
+        _fadeDuration = SSDefaultFadeDuration;
 
         switch (fadeEdges) {
             case FadeEdgesTopAndBottom:
@@ -54,23 +53,6 @@ static void *SSContext = &SSContext;
         }
     }
     return self;
-}
-
-- (instancetype)initWithFadePercentage:(CGFloat)fadePercentage edges:(FadeEdges)fadeEdges
-{
-    return [self initWithFadeType:FadeTypePercentage percentage:fadePercentage edges:fadeEdges];
-}
-
-- (instancetype)initWithFadePercentage:(CGFloat)fadePercentage
-{
-    return [self initWithFadePercentage:fadePercentage edges:FadeEdgesTopAndBottom];
-}
-
-- (instancetype)initWithFadeHeight:(CGFloat)fadeHeight edges:(FadeEdges)fadeEdges
-{
-    return [self initWithFadeType:FadeTypeHeight
-                       percentage:[self percentageForHeight:fadeHeight]
-                            edges:fadeEdges];
 }
 
 - (instancetype)initWithFadeHeight:(CGFloat)fadeHeight
@@ -104,11 +86,10 @@ static void *SSContext = &SSContext;
 
 - (void)setDefaults
 {
-    _fadeType = FadeTypeHeight;
     _fadeTop = YES;
     _fadeBottom = YES;
-    _fadePercentage = [self percentageForHeight:SSDefaultFadeHeight];
-    _fadeDuration = 0.3;
+    _fadeHeight = SSDefaultFadeHeight;
+    _fadeDuration = SSDefaultFadeDuration;
 }
 
 - (void)dealloc
@@ -126,22 +107,24 @@ static void *SSContext = &SSContext;
 - (void)layoutSubviews
 {
     [super layoutSubviews];
-
-    [self updateMaskFrame];
-    [self updateGradients];
-    [self updateScrollBarMasks];
+    [self updateMask];
 }
 
-- (void)updateMaskFrame
+- (void)updateMask
 {
     [CATransaction begin];
     [CATransaction setDisableActions:YES];
     self.maskLayer.frame = self.bounds;
     [CATransaction commit];
+
+    [self updateGradients];
+    [self updateScrollBarMasks];
 }
 
 - (void)updateGradients
 {
+    self.gradientLayer.frame = self.maskLayer.bounds;
+
     if (self.fadeTop) {
         if (!self.topGradientIsHidden && self.contentOffset.y <= 0) {
             [self animateTopGradientToColor:[SSFadingScrollView opaqueColor]]; // fade out
@@ -188,31 +171,6 @@ static void *SSContext = &SSContext;
     }
 
     return _horizontalScrollBarLayer;
-}
-
-- (void)setBounds:(CGRect)bounds
-{
-    CGFloat previousHeight = self.fadeHeight;
-    CGSize previousSize = self.bounds.size;
-
-    [super setBounds:bounds];
-
-    if (!CGSizeEqualToSize(previousSize, bounds.size) && self.fadeType == FadeTypeHeight) {
-        // Update fade percentage for new bounds height
-        self.fadePercentage = [self percentageForHeight:previousHeight];
-    }
-}
-
-#pragma mark Computed properties
-
-- (CGFloat)fadeHeight
-{
-    return [self heightForPercentage:self.fadePercentage];
-}
-
-- (void)setFadeHeight:(CGFloat)fadeHeight
-{
-    self.fadePercentage = [self percentageForHeight:fadeHeight];
 }
 
 - (BOOL)topGradientIsHidden
@@ -268,19 +226,21 @@ static void *SSContext = &SSContext;
 
     CAGradientLayer *gradientLayer = [CAGradientLayer layer];
     CGRect frame = self.bounds;
-    frame.origin.y = 0;
+    frame.origin = CGPointZero;
     gradientLayer.frame = frame;
 
     NSArray *gradientColors = [NSArray new];
     NSArray *gradientLocations = [NSArray new];
 
+    CGFloat fadePercentage = [self percentageForFadeHeight];
+
     if (self.fadeTop) {
         gradientColors = @[transparent, opaque];
-        gradientLocations = @[@(0), @(self.fadePercentage)];
+        gradientLocations = @[@(0), @(fadePercentage)];
     }
     if (self.fadeBottom) {
         gradientColors = [gradientColors arrayByAddingObjectsFromArray:@[opaque, transparent]];
-        gradientLocations = [gradientLocations arrayByAddingObjectsFromArray:@[@(1.0f - self.fadePercentage), @(1)]];
+        gradientLocations = [gradientLocations arrayByAddingObjectsFromArray:@[@(1.0f - fadePercentage), @(1)]];
     }
 
     gradientLayer.colors = gradientColors;
@@ -291,15 +251,10 @@ static void *SSContext = &SSContext;
     return gradientLayer;
 }
 
-- (CGFloat)percentageForHeight:(CGFloat)height
+- (CGFloat)percentageForFadeHeight
 {
     CGFloat scrollViewHeight = CGRectGetHeight(self.bounds);
-    return (scrollViewHeight > 0) ? (height / scrollViewHeight) : 0;
-}
-
-- (CGFloat)heightForPercentage:(CGFloat)percentage
-{
-    return CGRectGetHeight(self.bounds) * percentage;
+    return (scrollViewHeight > 0) ? (self.fadeHeight / scrollViewHeight) : 0;
 }
 
 #pragma mark Gradient animation
