@@ -149,7 +149,7 @@
 			isa = PBXProject;
 			attributes = {
 				CLASSPREFIX = SS;
-				LastUpgradeCheck = 0460;
+				LastUpgradeCheck = 0710;
 				ORGANIZATIONNAME = "Stephanie Sharp";
 			};
 			buildConfigurationList = 970FDD2217A7A4DC008DC2FB /* Build configuration list for PBXProject "FadingScrollView" */;
@@ -232,6 +232,7 @@
 				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				COPY_PHASE_STRIP = NO;
+				ENABLE_TESTABILITY = YES;
 				GCC_C_LANGUAGE_STANDARD = gnu99;
 				GCC_DYNAMIC_NO_PIC = NO;
 				GCC_OPTIMIZATION_LEVEL = 0;
@@ -281,6 +282,7 @@
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "FadingScrollViewDemo/FadingScrollViewDemo-Prefix.pch";
 				INFOPLIST_FILE = "FadingScrollViewDemo/FadingScrollViewDemo-Info.plist";
+				PRODUCT_BUNDLE_IDENTIFIER = "com.ss.$(PRODUCT_NAME:rfc1034identifier)";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				WRAPPER_EXTENSION = app;
 			};
@@ -293,6 +295,7 @@
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "FadingScrollViewDemo/FadingScrollViewDemo-Prefix.pch";
 				INFOPLIST_FILE = "FadingScrollViewDemo/FadingScrollViewDemo-Info.plist";
+				PRODUCT_BUNDLE_IDENTIFIER = "com.ss.$(PRODUCT_NAME:rfc1034identifier)";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				WRAPPER_EXTENSION = app;
 			};
