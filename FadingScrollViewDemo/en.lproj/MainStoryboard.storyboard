@@ -200,7 +200,6 @@ Maecenas sagittis eu felis sed pellentesque. Integer varius justo sem, sed viver
                                     <imageView userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="coffee-1" translatesAutoresizingMaskIntoConstraints="NO" id="TtR-j1-QVf">
                                         <rect key="frame" x="0.0" y="0.0" width="320" height="320"/>
                                         <animations/>
-                                        <color key="backgroundColor" red="0.74509805439999999" green="0.050980392839999999" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                                         <constraints>
                                             <constraint firstAttribute="width" constant="320" id="oJ8-3z-fmn"/>
                                             <constraint firstAttribute="width" secondItem="TtR-j1-QVf" secondAttribute="height" multiplier="1:1" id="qgf-eL-VEL"/>
@@ -209,7 +208,6 @@ Maecenas sagittis eu felis sed pellentesque. Integer varius justo sem, sed viver
                                     <imageView userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="coffee-2" translatesAutoresizingMaskIntoConstraints="NO" id="ty1-Xv-IQC">
                                         <rect key="frame" x="0.0" y="320" width="320" height="320"/>
                                         <animations/>
-                                        <color key="backgroundColor" red="0.29450395699999998" green="0.50717884300000005" blue="0.99856132269999998" alpha="1" colorSpace="calibratedRGB"/>
                                         <constraints>
                                             <constraint firstAttribute="width" secondItem="ty1-Xv-IQC" secondAttribute="height" multiplier="1:1" id="rc6-JV-BQt"/>
                                         </constraints>
@@ -217,7 +215,6 @@ Maecenas sagittis eu felis sed pellentesque. Integer varius justo sem, sed viver
                                     <imageView userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="coffee-3" translatesAutoresizingMaskIntoConstraints="NO" id="GaJ-Ww-jRW">
                                         <rect key="frame" x="0.0" y="640" width="320" height="320"/>
                                         <animations/>
-                                        <color key="backgroundColor" red="0.31372550129999999" green="0.77254903320000001" blue="0.27843138579999999" alpha="1" colorSpace="calibratedRGB"/>
                                     </imageView>
                                 </subviews>
                                 <animations/>
