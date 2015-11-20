@@ -341,7 +341,7 @@ Maecenas sagittis eu felis sed pellentesque. Integer varius justo sem, sed viver
                             </scrollView>
                         </subviews>
                         <animations/>
-                        <color key="backgroundColor" red="0.92264735698699951" green="1" blue="0.9131699800491333" alpha="1" colorSpace="calibratedRGB"/>
+                        <color key="backgroundColor" cocoaTouchSystemColor="groupTableViewBackgroundColor"/>
                         <constraints>
                             <constraint firstItem="gvg-6a-eKk" firstAttribute="trailing" secondItem="E4A-9A-xVl" secondAttribute="trailing" id="47x-EL-9Gw"/>
                             <constraint firstItem="gvg-6a-eKk" firstAttribute="leading" secondItem="E4A-9A-xVl" secondAttribute="leading" id="MKN-wd-CrY"/>
@@ -357,8 +357,8 @@ Maecenas sagittis eu felis sed pellentesque. Integer varius justo sem, sed viver
         </scene>
     </scenes>
     <resources>
-        <image name="coffee-1" width="3456" height="2304"/>
-        <image name="coffee-2" width="2592" height="1944"/>
-        <image name="coffee-3" width="960" height="1079"/>
+        <image name="coffee-1" width="1000" height="667"/>
+        <image name="coffee-2" width="1000" height="750"/>
+        <image name="coffee-3" width="890" height="1000"/>
     </resources>
 </document>
