@@ -197,7 +197,7 @@ Maecenas sagittis eu felis sed pellentesque. Integer varius justo sem, sed viver
                             <scrollView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" showsHorizontalScrollIndicator="NO" showsVerticalScrollIndicator="NO" translatesAutoresizingMaskIntoConstraints="NO" id="iAb-BL-UjD" customClass="SSFadingScrollView">
                                 <rect key="frame" x="0.0" y="0.0" width="320" height="960"/>
                                 <subviews>
-                                    <imageView userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="coffee-1" translatesAutoresizingMaskIntoConstraints="NO" id="TtR-j1-QVf">
+                                    <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="coffee-1" translatesAutoresizingMaskIntoConstraints="NO" id="TtR-j1-QVf">
                                         <rect key="frame" x="0.0" y="0.0" width="320" height="320"/>
                                         <animations/>
                                         <constraints>
@@ -205,14 +205,14 @@ Maecenas sagittis eu felis sed pellentesque. Integer varius justo sem, sed viver
                                             <constraint firstAttribute="width" secondItem="TtR-j1-QVf" secondAttribute="height" multiplier="1:1" id="qgf-eL-VEL"/>
                                         </constraints>
                                     </imageView>
-                                    <imageView userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="coffee-2" translatesAutoresizingMaskIntoConstraints="NO" id="ty1-Xv-IQC">
+                                    <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="coffee-2" translatesAutoresizingMaskIntoConstraints="NO" id="ty1-Xv-IQC">
                                         <rect key="frame" x="0.0" y="320" width="320" height="320"/>
                                         <animations/>
                                         <constraints>
                                             <constraint firstAttribute="width" secondItem="ty1-Xv-IQC" secondAttribute="height" multiplier="1:1" id="rc6-JV-BQt"/>
                                         </constraints>
                                     </imageView>
-                                    <imageView userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="coffee-3" translatesAutoresizingMaskIntoConstraints="NO" id="GaJ-Ww-jRW">
+                                    <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="coffee-3" translatesAutoresizingMaskIntoConstraints="NO" id="GaJ-Ww-jRW">
                                         <rect key="frame" x="0.0" y="640" width="320" height="320"/>
                                         <animations/>
                                     </imageView>
