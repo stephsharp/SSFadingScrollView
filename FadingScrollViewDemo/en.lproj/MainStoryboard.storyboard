@@ -273,7 +273,7 @@ Maecenas sagittis eu felis sed pellentesque. Integer varius justo sem, sed viver
                 </navigationController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="IGk-mE-pGV" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="470" y="630"/>
+            <point key="canvasLocation" x="548" y="630"/>
         </scene>
         <!--Fade top only-->
         <scene sceneID="7MM-7E-6Bh">
