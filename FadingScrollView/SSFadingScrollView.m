@@ -7,7 +7,7 @@
 #import <QuartzCore/QuartzCore.h>
 
 static CGFloat const SSDefaultFadeHeight = 30.0f;
-static CFTimeInterval const SSDefaultFadeDuration = 0.3f;
+static CFTimeInterval const SSDefaultFadeDuration = 0.3;
 static void *SSContext = &SSContext;
 
 @interface SSFadingScrollView ()
