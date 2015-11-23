@@ -125,22 +125,23 @@ static void *SSContext = &SSContext;
 - (void)updateGradients
 {
     self.gradientLayer.frame = self.maskLayer.bounds;
+    NSInteger contentOffsetY = roundf(self.contentOffset.y);
 
     if (self.fadeTop) {
-        if (!self.topGradientIsHidden && self.contentOffset.y <= 0) {
+        if (!self.topGradientIsHidden && contentOffsetY <= 0) {
             [self animateTopGradientToColor:[SSFadingScrollView opaqueColor]]; // fade out
         }
-        else if (self.topGradientIsHidden && self.contentOffset.y > 0) {
+        else if (self.topGradientIsHidden && contentOffsetY > 0) {
             [self animateTopGradientToColor:[SSFadingScrollView transparentColor]]; // fade in
         }
     }
     if (self.fadeBottom) {
-        CGFloat maxContentOffset = self.contentSize.height - CGRectGetHeight(self.bounds);
+        NSInteger maxContentOffset = roundf(self.contentSize.height - CGRectGetHeight(self.bounds));
 
-        if (!self.bottomGradientIsHidden && self.contentOffset.y >= maxContentOffset) {
+        if (!self.bottomGradientIsHidden && contentOffsetY >= maxContentOffset) {
             [self animateBottomGradientToColor:[SSFadingScrollView opaqueColor]];
         }
-        else if (self.bottomGradientIsHidden && self.contentOffset.y < maxContentOffset) {
+        else if (self.bottomGradientIsHidden && contentOffsetY < maxContentOffset) {
             [self animateBottomGradientToColor:[SSFadingScrollView transparentColor]];
         }
     }

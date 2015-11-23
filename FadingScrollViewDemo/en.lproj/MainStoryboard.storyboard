@@ -163,7 +163,7 @@ Maecenas sagittis eu felis sed pellentesque. Integer varius justo sem, sed viver
                                     <constraint firstItem="Xlp-9H-yHd" firstAttribute="top" secondItem="Eio-F9-JcA" secondAttribute="top" constant="8" id="772-Ht-dA2"/>
                                     <constraint firstAttribute="trailing" secondItem="Xlp-9H-yHd" secondAttribute="trailing" constant="20" symbolic="YES" id="NZS-Ei-Zp4"/>
                                     <constraint firstItem="Xlp-9H-yHd" firstAttribute="leading" secondItem="Eio-F9-JcA" secondAttribute="leading" constant="20" symbolic="YES" id="Zk3-8d-PeT"/>
-                                    <constraint firstAttribute="bottom" secondItem="Xlp-9H-yHd" secondAttribute="bottom" id="kaU-U8-3kO"/>
+                                    <constraint firstAttribute="bottom" secondItem="Xlp-9H-yHd" secondAttribute="bottom" constant="8" id="kaU-U8-3kO"/>
                                 </constraints>
                             </scrollView>
                         </subviews>
