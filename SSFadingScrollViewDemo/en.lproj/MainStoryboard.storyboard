@@ -124,8 +124,8 @@
                             <scrollView opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Eio-F9-JcA" customClass="SSFadingScrollView">
                                 <rect key="frame" x="0.0" y="0.0" width="320" height="504"/>
                                 <subviews>
-                                    <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" preferredMaxLayoutWidth="280" translatesAutoresizingMaskIntoConstraints="NO" id="Xlp-9H-yHd">
-                                        <rect key="frame" x="20" y="8" width="280" height="1403"/>
+                                    <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Xlp-9H-yHd">
+                                        <rect key="frame" x="16" y="8" width="288" height="1387"/>
                                         <animations/>
                                         <string key="text">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Aenean nunc nisi, tincidunt nec nisl a, sodales volutpat dolor. Maecenas molestie a libero a lacinia. 
 
@@ -160,9 +160,9 @@ Maecenas sagittis eu felis sed pellentesque. Integer varius justo sem, sed viver
                                 <animations/>
                                 <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                                 <constraints>
-                                    <constraint firstItem="Xlp-9H-yHd" firstAttribute="top" secondItem="Eio-F9-JcA" secondAttribute="top" constant="8" id="772-Ht-dA2"/>
-                                    <constraint firstAttribute="trailing" secondItem="Xlp-9H-yHd" secondAttribute="trailing" constant="20" symbolic="YES" id="NZS-Ei-Zp4"/>
-                                    <constraint firstItem="Xlp-9H-yHd" firstAttribute="leading" secondItem="Eio-F9-JcA" secondAttribute="leading" constant="20" symbolic="YES" id="Zk3-8d-PeT"/>
+                                    <constraint firstAttribute="trailing" secondItem="Xlp-9H-yHd" secondAttribute="trailing" constant="16" id="7lR-vS-Vhi"/>
+                                    <constraint firstItem="Xlp-9H-yHd" firstAttribute="top" secondItem="Eio-F9-JcA" secondAttribute="top" constant="8" id="VMy-sB-1Fy"/>
+                                    <constraint firstItem="Xlp-9H-yHd" firstAttribute="leading" secondItem="Eio-F9-JcA" secondAttribute="leading" constant="16" id="Y9R-S6-ixy"/>
                                     <constraint firstAttribute="bottom" secondItem="Xlp-9H-yHd" secondAttribute="bottom" constant="8" id="kaU-U8-3kO"/>
                                 </constraints>
                             </scrollView>
@@ -171,8 +171,10 @@ Maecenas sagittis eu felis sed pellentesque. Integer varius justo sem, sed viver
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <constraints>
                             <constraint firstItem="Eio-F9-JcA" firstAttribute="trailing" secondItem="3" secondAttribute="trailing" id="Dom-O5-jVa"/>
+                            <constraint firstItem="Xlp-9H-yHd" firstAttribute="leading" secondItem="3" secondAttribute="leading" constant="16" id="Nhk-Hz-OE3"/>
                             <constraint firstItem="Eio-F9-JcA" firstAttribute="top" secondItem="lG0-hZ-Vnt" secondAttribute="bottom" id="aBi-WG-659"/>
                             <constraint firstItem="Eio-F9-JcA" firstAttribute="bottom" secondItem="3" secondAttribute="bottom" id="ccg-bZ-f4b"/>
+                            <constraint firstAttribute="trailing" secondItem="Xlp-9H-yHd" secondAttribute="trailing" constant="16" id="iSi-Im-Ch3"/>
                             <constraint firstItem="Eio-F9-JcA" firstAttribute="leading" secondItem="3" secondAttribute="leading" id="nbi-3c-buw"/>
                         </constraints>
                     </view>
@@ -201,7 +203,6 @@ Maecenas sagittis eu felis sed pellentesque. Integer varius justo sem, sed viver
                                         <rect key="frame" x="0.0" y="0.0" width="320" height="320"/>
                                         <animations/>
                                         <constraints>
-                                            <constraint firstAttribute="width" constant="320" id="oJ8-3z-fmn"/>
                                             <constraint firstAttribute="width" secondItem="TtR-j1-QVf" secondAttribute="height" multiplier="1:1" id="qgf-eL-VEL"/>
                                         </constraints>
                                     </imageView>
@@ -245,6 +246,7 @@ Maecenas sagittis eu felis sed pellentesque. Integer varius justo sem, sed viver
                             <constraint firstItem="iAb-BL-UjD" firstAttribute="top" secondItem="2VO-aW-6dx" secondAttribute="top" id="6KI-MQ-mne"/>
                             <constraint firstAttribute="trailing" secondItem="iAb-BL-UjD" secondAttribute="trailing" id="KQv-l7-bLj"/>
                             <constraint firstItem="iAb-BL-UjD" firstAttribute="leading" secondItem="2VO-aW-6dx" secondAttribute="leading" id="eO3-5c-4jr"/>
+                            <constraint firstItem="TtR-j1-QVf" firstAttribute="width" secondItem="2VO-aW-6dx" secondAttribute="width" id="lBo-4F-axd"/>
                             <constraint firstItem="AIq-gt-OWf" firstAttribute="top" secondItem="iAb-BL-UjD" secondAttribute="bottom" id="uAS-MY-fqd"/>
                         </constraints>
                     </view>
@@ -290,8 +292,8 @@ Maecenas sagittis eu felis sed pellentesque. Integer varius justo sem, sed viver
                             <scrollView opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="gvg-6a-eKk" customClass="SSFadingScrollView">
                                 <rect key="frame" x="0.0" y="0.0" width="320" height="504"/>
                                 <subviews>
-                                    <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" preferredMaxLayoutWidth="280" translatesAutoresizingMaskIntoConstraints="NO" id="zdT-hq-zB7">
-                                        <rect key="frame" x="20" y="8" width="280" height="1403"/>
+                                    <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="zdT-hq-zB7">
+                                        <rect key="frame" x="16" y="8" width="288" height="1387"/>
                                         <animations/>
                                         <string key="text">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Aenean nunc nisi, tincidunt nec nisl a, sodales volutpat dolor. Maecenas molestie a libero a lacinia. 
 
@@ -325,10 +327,10 @@ Maecenas sagittis eu felis sed pellentesque. Integer varius justo sem, sed viver
                                 </subviews>
                                 <animations/>
                                 <constraints>
+                                    <constraint firstAttribute="trailing" secondItem="zdT-hq-zB7" secondAttribute="trailing" constant="16" id="331-6G-56p"/>
                                     <constraint firstItem="zdT-hq-zB7" firstAttribute="top" secondItem="gvg-6a-eKk" secondAttribute="top" constant="8" id="QIy-vA-tps"/>
-                                    <constraint firstAttribute="trailing" secondItem="zdT-hq-zB7" secondAttribute="trailing" constant="20" symbolic="YES" id="dwN-nz-Uyd"/>
-                                    <constraint firstAttribute="bottom" secondItem="zdT-hq-zB7" secondAttribute="bottom" id="e1L-5f-BEA"/>
-                                    <constraint firstItem="zdT-hq-zB7" firstAttribute="leading" secondItem="gvg-6a-eKk" secondAttribute="leading" constant="20" symbolic="YES" id="vbh-TN-oRJ"/>
+                                    <constraint firstAttribute="bottom" secondItem="zdT-hq-zB7" secondAttribute="bottom" constant="8" id="e1L-5f-BEA"/>
+                                    <constraint firstItem="zdT-hq-zB7" firstAttribute="leading" secondItem="gvg-6a-eKk" secondAttribute="leading" constant="16" id="kmw-2N-P7H"/>
                                 </constraints>
                                 <userDefinedRuntimeAttributes>
                                     <userDefinedRuntimeAttribute type="number" keyPath="fadeHeight">
@@ -343,7 +345,9 @@ Maecenas sagittis eu felis sed pellentesque. Integer varius justo sem, sed viver
                         <animations/>
                         <color key="backgroundColor" cocoaTouchSystemColor="groupTableViewBackgroundColor"/>
                         <constraints>
+                            <constraint firstAttribute="trailing" secondItem="zdT-hq-zB7" secondAttribute="trailing" constant="16" id="3Y1-Sj-o22"/>
                             <constraint firstItem="gvg-6a-eKk" firstAttribute="trailing" secondItem="E4A-9A-xVl" secondAttribute="trailing" id="47x-EL-9Gw"/>
+                            <constraint firstItem="zdT-hq-zB7" firstAttribute="leading" secondItem="E4A-9A-xVl" secondAttribute="leading" constant="16" id="7aS-se-lQG"/>
                             <constraint firstItem="gvg-6a-eKk" firstAttribute="leading" secondItem="E4A-9A-xVl" secondAttribute="leading" id="MKN-wd-CrY"/>
                             <constraint firstItem="gvg-6a-eKk" firstAttribute="bottom" secondItem="E4A-9A-xVl" secondAttribute="bottom" id="kfv-PP-sJd"/>
                             <constraint firstItem="gvg-6a-eKk" firstAttribute="top" secondItem="TPS-gx-aEM" secondAttribute="bottom" id="vHk-JT-w9d"/>
