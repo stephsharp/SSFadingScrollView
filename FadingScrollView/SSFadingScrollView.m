@@ -255,7 +255,13 @@ static void *SSContext = &SSContext;
 - (CGFloat)percentageForFadeHeight
 {
     CGFloat scrollViewHeight = CGRectGetHeight(self.bounds);
-    return (scrollViewHeight > 0) ? (self.fadeHeight / scrollViewHeight) : 0;
+
+    if (scrollViewHeight <= 0) {
+        return 0;
+    }
+
+    CGFloat maxFadePercentage = (self.fadeTop && self.fadeBottom) ? 0.5f : 1.0f;
+    return fminf(self.fadeHeight / scrollViewHeight, maxFadePercentage);
 }
 
 #pragma mark Gradient animation
