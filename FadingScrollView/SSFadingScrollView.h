@@ -13,18 +13,45 @@ typedef NS_ENUM(NSUInteger, FadeEdges) {
 
 @interface SSFadingScrollView : UIScrollView
 
-// designated initializer
+/* 
+ * Designated initializer.
+ */
 - (instancetype)initWithFadeHeight:(CGFloat)fadeHeight edges:(FadeEdges)fadeEdges;
-- (instancetype)initWithFadeHeight:(CGFloat)fadeHeight; // top and bottom
-- (instancetype)init; // top and bottom with default fade height
 
+/*
+ * Initializer that fades the top and bottom of the scroll view.
+ */
+- (instancetype)initWithFadeHeight:(CGFloat)fadeHeight;
+
+/*
+ * Initializer that fades the top and bottom of the scroll view with default fade height.
+ */
+- (instancetype)init;
+
+/*
+ * Fade top of scroll view. Default is YES.
+ */
 @property (nonatomic) IBInspectable BOOL fadeTop;
+
+/*
+ * Fade bottom of scroll view. Default is YES.
+ */
 @property (nonatomic) IBInspectable BOOL fadeBottom;
-@property (nonatomic) IBInspectable CGFloat fadeHeight; // default = 30.0f
+
+/*
+ * Height of gradient. Default is 30.
+ */
+@property (nonatomic) IBInspectable CGFloat fadeHeight;
+
+/*
+ * Duration of fade in & out. Default is 0.3 seconds.
+ */
 @property (nonatomic) IBInspectable double fadeDuration;
 
-// Default YES, set to NO to fade the scroll bars with the gradient
-// Masking scrollbars works for iOS 7+
+/*
+ * Default is YES. Scroll bars are masked so they don't fade with the scroll view content.
+ * Set to NO to fade out the scroll bars along with the content.
+ */
 @property (nonatomic) IBInspectable BOOL maskScrollBars;
 
 @end
