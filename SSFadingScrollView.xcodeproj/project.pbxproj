@@ -12,15 +12,13 @@
 		82B3A6941C031A13000024C3 /* SSFadingScrollView.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 82B3A68D1C031A13000024C3 /* SSFadingScrollView.framework */; };
 		82B3A6951C031A13000024C3 /* SSFadingScrollView.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 82B3A68D1C031A13000024C3 /* SSFadingScrollView.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		82B3A69B1C031AE4000024C3 /* SSFadingScrollView.m in Sources */ = {isa = PBXBuildFile; fileRef = 82B3A69A1C031AE4000024C3 /* SSFadingScrollView.m */; };
+		82B3A69F1C031FB6000024C3 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 82B3A69E1C031FB6000024C3 /* LaunchScreen.storyboard */; };
 		970FDD7517A7A512008DC2FB /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 970FDD2A17A7A4DC008DC2FB /* UIKit.framework */; };
 		970FDD7617A7A512008DC2FB /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 970FDD2C17A7A4DC008DC2FB /* Foundation.framework */; };
 		970FDD7717A7A512008DC2FB /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 970FDD2E17A7A4DC008DC2FB /* CoreGraphics.framework */; };
 		970FDD7D17A7A512008DC2FB /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = 970FDD7B17A7A512008DC2FB /* InfoPlist.strings */; };
 		970FDD7F17A7A512008DC2FB /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 970FDD7E17A7A512008DC2FB /* main.m */; };
 		970FDD8317A7A512008DC2FB /* SSAppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 970FDD8217A7A512008DC2FB /* SSAppDelegate.m */; };
-		970FDD8517A7A512008DC2FB /* Default.png in Resources */ = {isa = PBXBuildFile; fileRef = 970FDD8417A7A512008DC2FB /* Default.png */; };
-		970FDD8717A7A512008DC2FB /* Default@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 970FDD8617A7A512008DC2FB /* Default@2x.png */; };
-		970FDD8917A7A512008DC2FB /* Default-568h@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 970FDD8817A7A512008DC2FB /* Default-568h@2x.png */; };
 		970FDD8C17A7A512008DC2FB /* MainStoryboard.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 970FDD8A17A7A512008DC2FB /* MainStoryboard.storyboard */; };
 		970FDD9D17A7A5C6008DC2FB /* QuartzCore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 970FDD9B17A7A5B9008DC2FB /* QuartzCore.framework */; };
 /* End PBXBuildFile section */
@@ -55,6 +53,7 @@
 		82B3A68F1C031A13000024C3 /* SSFadingScrollView.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = SSFadingScrollView.h; sourceTree = "<group>"; };
 		82B3A6911C031A13000024C3 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		82B3A69A1C031AE4000024C3 /* SSFadingScrollView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SSFadingScrollView.m; sourceTree = "<group>"; };
+		82B3A69E1C031FB6000024C3 /* LaunchScreen.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = LaunchScreen.storyboard; sourceTree = "<group>"; };
 		970FDD2A17A7A4DC008DC2FB /* UIKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = UIKit.framework; path = System/Library/Frameworks/UIKit.framework; sourceTree = SDKROOT; };
 		970FDD2C17A7A4DC008DC2FB /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
 		970FDD2E17A7A4DC008DC2FB /* CoreGraphics.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreGraphics.framework; path = System/Library/Frameworks/CoreGraphics.framework; sourceTree = SDKROOT; };
@@ -64,9 +63,6 @@
 		970FDD7E17A7A512008DC2FB /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
 		970FDD8117A7A512008DC2FB /* SSAppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = SSAppDelegate.h; sourceTree = "<group>"; };
 		970FDD8217A7A512008DC2FB /* SSAppDelegate.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = SSAppDelegate.m; sourceTree = "<group>"; };
-		970FDD8417A7A512008DC2FB /* Default.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = Default.png; sourceTree = "<group>"; };
-		970FDD8617A7A512008DC2FB /* Default@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Default@2x.png"; sourceTree = "<group>"; };
-		970FDD8817A7A512008DC2FB /* Default-568h@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Default-568h@2x.png"; sourceTree = "<group>"; };
 		970FDD8B17A7A512008DC2FB /* en */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = en; path = en.lproj/MainStoryboard.storyboard; sourceTree = "<group>"; };
 		970FDD9B17A7A5B9008DC2FB /* QuartzCore.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = QuartzCore.framework; path = System/Library/Frameworks/QuartzCore.framework; sourceTree = SDKROOT; };
 /* End PBXFileReference section */
@@ -140,6 +136,7 @@
 				970FDD8117A7A512008DC2FB /* SSAppDelegate.h */,
 				970FDD8217A7A512008DC2FB /* SSAppDelegate.m */,
 				970FDD8A17A7A512008DC2FB /* MainStoryboard.storyboard */,
+				82B3A69E1C031FB6000024C3 /* LaunchScreen.storyboard */,
 				82630F641B63A4EE003B4CCA /* Images.xcassets */,
 				970FDD7917A7A512008DC2FB /* Supporting Files */,
 			);
@@ -152,9 +149,6 @@
 				970FDD7A17A7A512008DC2FB /* SSFadingScrollViewDemo-Info.plist */,
 				970FDD7B17A7A512008DC2FB /* InfoPlist.strings */,
 				970FDD7E17A7A512008DC2FB /* main.m */,
-				970FDD8417A7A512008DC2FB /* Default.png */,
-				970FDD8617A7A512008DC2FB /* Default@2x.png */,
-				970FDD8817A7A512008DC2FB /* Default-568h@2x.png */,
 			);
 			name = "Supporting Files";
 			sourceTree = "<group>";
@@ -256,10 +250,8 @@
 			buildActionMask = 2147483647;
 			files = (
 				970FDD7D17A7A512008DC2FB /* InfoPlist.strings in Resources */,
-				970FDD8517A7A512008DC2FB /* Default.png in Resources */,
-				970FDD8717A7A512008DC2FB /* Default@2x.png in Resources */,
+				82B3A69F1C031FB6000024C3 /* LaunchScreen.storyboard in Resources */,
 				82630F651B63A4EE003B4CCA /* Images.xcassets in Resources */,
-				970FDD8917A7A512008DC2FB /* Default-568h@2x.png in Resources */,
 				970FDD8C17A7A512008DC2FB /* MainStoryboard.storyboard in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
