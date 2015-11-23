@@ -5,6 +5,12 @@
 
 #import <UIKit/UIKit.h>
 
+//! Project version number for SSFadingScrollView.
+FOUNDATION_EXPORT double SSFadingScrollViewVersionNumber;
+
+//! Project version string for SSFadingScrollView.
+FOUNDATION_EXPORT const unsigned char SSFadingScrollViewVersionString[];
+
 typedef NS_ENUM(NSUInteger, FadeEdges) {
     FadeEdgesTopAndBottom,
     FadeEdgesTop,
