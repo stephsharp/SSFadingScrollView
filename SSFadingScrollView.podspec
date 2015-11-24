@@ -9,5 +9,6 @@ Pod::Spec.new do |s|
   s.source       = { :git => "https://github.com/stephsharp/SSFadingScrollView.git", :tag => "v#{s.version}" }
   s.source_files = "SSFadingScrollView"
   s.public_header_files = [ "SSFadingScrollView/SSFadingScrollView.h" ]
+  s.framework    = 'QuartzCore'
   s.requires_arc = true
 end
