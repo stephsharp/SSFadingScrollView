@@ -1,6 +1,6 @@
 Pod::Spec.new do |s|
   s.name         = "SSFadingScrollView"
-  s.version      = "1.0"
+  s.version      = "1.0.1"
   s.summary      = "A UIScrollView subclass that fades the top and/or bottom of a scroll view to transparent"
   s.homepage     = "https://github.com/stephsharp/SSFadingScrollView/"
   s.license      = { :type => "MIT", :file => "LICENSE" }
