@@ -1,5 +1,5 @@
 //
-//  FadingScrollView.m
+//  SSFadingScrollView.m
 //  Created by Stephanie Sharp on 1/06/13.
 //
 
