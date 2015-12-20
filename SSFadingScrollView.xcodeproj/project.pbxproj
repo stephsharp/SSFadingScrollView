@@ -103,8 +103,8 @@
 		970FDD1E17A7A4DC008DC2FB = {
 			isa = PBXGroup;
 			children = (
-				970FDD7817A7A512008DC2FB /* SSFadingScrollViewDemo */,
 				82B3A68E1C031A13000024C3 /* SSFadingScrollView */,
+				970FDD7817A7A512008DC2FB /* SSFadingScrollViewDemo */,
 				970FDD2917A7A4DC008DC2FB /* Frameworks */,
 				970FDD2817A7A4DC008DC2FB /* Products */,
 			);
@@ -469,6 +469,7 @@
 				82B3A6971C031A13000024C3 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 		970FDD2217A7A4DC008DC2FB /* Build configuration list for PBXProject "SSFadingScrollView" */ = {
 			isa = XCConfigurationList;
