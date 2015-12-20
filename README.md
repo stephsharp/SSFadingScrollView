@@ -2,7 +2,7 @@
 
 A UIScrollView subclass that fades the top and/or bottom of a scroll view to transparent. It animates the gradient in and out based on the current content offset, and uses a mask to fade the scroll view content without also fading the scroll bars.
 
-![Screenshots](https://raw.github.com/stephsharp/SSFadingScrollView/master/ssfadingscrollview_screenshot.png)
+![SSFadingScrollView screenshots](SSFadingScrollView.png)
 
 ##Features
 
