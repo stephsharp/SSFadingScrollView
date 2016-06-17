@@ -108,7 +108,7 @@ static void *SSContext = &SSContext;
 - (void)updateGradients
 {
     self.gradientLayer.frame = self.maskLayer.bounds;
-    NSInteger contentOffset = roundf(self.fadeAxis == SSScrollViewFadeAxisVertical ? self.contentOffset.y : self.contentOffset.x);
+    NSInteger contentOffset = roundf(self.isVertical ? self.contentOffset.y : self.contentOffset.x);
 
     if (self.fadeLeadingEdge) {
         if (!self.leadingGradientIsHidden && contentOffset <= 0) {
@@ -119,7 +119,13 @@ static void *SSContext = &SSContext;
         }
     }
     if (self.fadeTrailingEdge) {
-        NSInteger maxContentOffset = roundf(self.fadeAxis == SSScrollViewFadeAxisVertical ? (self.contentSize.height - CGRectGetHeight(self.bounds)) : (self.contentSize.width - CGRectGetWidth(self.bounds)));
+        NSInteger maxContentOffset;
+        if (self.isVertical) {
+            maxContentOffset = roundf(self.contentSize.height - CGRectGetHeight(self.bounds));
+        }
+        else {
+            maxContentOffset = roundf(self.contentSize.width - CGRectGetWidth(self.bounds));
+        }
 
         if (!self.trailingGradientIsHidden && contentOffset >= maxContentOffset) {
             [self animateTrailingGradientToColor:[SSFadingScrollView opaqueColor]];
@@ -131,6 +137,11 @@ static void *SSContext = &SSContext;
 }
 
 #pragma mark - Properties
+
+- (BOOL)isVertical
+{
+    return self.fadeAxis == SSScrollViewFadeAxisVertical;
+}
 
 - (CALayer *)maskLayer
 {
@@ -214,27 +225,28 @@ static void *SSContext = &SSContext;
     frame.origin = CGPointZero;
     gradientLayer.frame = frame;
 
-    NSArray *gradientColors = [NSArray new];
-    NSArray *gradientLocations = [NSArray new];
+    NSArray *colors = [NSArray new];
+    NSArray *locations = [NSArray new];
 
     CGFloat fadePercentage = [self percentageForFadeSize];
 
     if (self.fadeLeadingEdge) {
-        gradientColors = @[transparent, opaque];
-        gradientLocations = @[@(0), @(fadePercentage)];
+        colors = @[transparent, opaque];
+        locations = @[@(0), @(fadePercentage)];
     }
     if (self.fadeTrailingEdge) {
-        gradientColors = [gradientColors arrayByAddingObjectsFromArray:@[opaque, transparent]];
-        gradientLocations = [gradientLocations arrayByAddingObjectsFromArray:@[@(1.0f - fadePercentage), @(1)]];
+        colors = [colors arrayByAddingObjectsFromArray:@[opaque, transparent]];
+        locations = [locations arrayByAddingObjectsFromArray:@[@(1.0 - fadePercentage), @(1)]];
     }
 
-    gradientLayer.colors = gradientColors;
-    gradientLayer.locations = gradientLocations;
+    gradientLayer.colors = colors;
+    gradientLayer.locations = locations;
 
-    if (self.fadeAxis == SSScrollViewFadeAxisVertical) {
+    if (self.isVertical) {
         gradientLayer.startPoint = CGPointMake(0.5, 0);
         gradientLayer.endPoint = CGPointMake(0.5, 1);
-    } else {
+    }
+    else {
         gradientLayer.startPoint = CGPointMake(0, 0.5);
         gradientLayer.endPoint = CGPointMake(1, 0.5);
     }
@@ -244,14 +256,14 @@ static void *SSContext = &SSContext;
 
 - (CGFloat)percentageForFadeSize
 {
-    CGFloat scrollViewSize = self.fadeAxis == SSScrollViewFadeAxisVertical ? CGRectGetHeight(self.bounds) : CGRectGetWidth(self.bounds);
+    CGFloat size = self.isVertical ? CGRectGetHeight(self.bounds) : CGRectGetWidth(self.bounds);
 
-    if (scrollViewSize <= 0) {
+    if (size <= 0) {
         return 0;
     }
 
-    CGFloat maxFadePercentage = (self.fadeLeadingEdge && self.fadeTrailingEdge) ? 0.5f : 1.0f;
-    return fminf(self.fadeSize / scrollViewSize, maxFadePercentage);
+    CGFloat maxFadePercentage = (self.fadeLeadingEdge && self.fadeTrailingEdge) ? 0.5 : 1.0;
+    return fminf(self.fadeSize / size, maxFadePercentage);
 }
 
 #pragma mark Gradient animation
@@ -332,15 +344,15 @@ static void *SSContext = &SSContext;
         if ([subview isKindOfClass:[UIImageView class]] && subview.tag == 0) {
             UIImageView *imageView = (UIImageView *)subview;
 
-            if (imageView.frame.size.width == 3.5f ||
-                imageView.frame.size.width == 2.5f ||
-                (imageView.frame.size.width < 2.4f && imageView.frame.size.width > 2.3f))
+            if (imageView.frame.size.width == 3.5 ||
+                imageView.frame.size.width == 2.5 ||
+                (imageView.frame.size.width < 2.4 && imageView.frame.size.width > 2.3))
             {
                 self.verticalScrollBar = imageView;
             }
-            else if (imageView.frame.size.height == 3.5f ||
-                     imageView.frame.size.height == 2.5f ||
-                     (imageView.frame.size.height < 2.4f && imageView.frame.size.height > 2.3f))
+            else if (imageView.frame.size.height == 3.5 ||
+                     imageView.frame.size.height == 2.5 ||
+                     (imageView.frame.size.height < 2.4 && imageView.frame.size.height > 2.3))
             {
                 self.horizontalScrollBar = imageView;
             }
@@ -363,11 +375,13 @@ static void *SSContext = &SSContext;
         [CATransaction begin];
         [CATransaction setDisableActions:YES];
 
-        CGRect verticalScrollBarFrame = [self.layer convertRect:self.verticalScrollBar.frame toLayer:self.maskLayer];
+        CGRect verticalScrollBarFrame = [self.layer convertRect:self.verticalScrollBar.frame
+                                                        toLayer:self.maskLayer];
         self.verticalScrollBarLayer.frame = verticalScrollBarFrame;
         self.verticalScrollBarLayer.opacity = self.verticalScrollBar.alpha;
 
-        CGRect horizontalScrollBarFrame = [self.layer convertRect:self.horizontalScrollBar.frame toLayer:self.maskLayer];
+        CGRect horizontalScrollBarFrame = [self.layer convertRect:self.horizontalScrollBar.frame
+                                                          toLayer:self.maskLayer];
         self.horizontalScrollBarLayer.frame = horizontalScrollBarFrame;
         self.horizontalScrollBarLayer.opacity = self.horizontalScrollBar.alpha;
 
@@ -375,7 +389,11 @@ static void *SSContext = &SSContext;
     }
 }
 
-- (void)observeValueForKeyPath:(NSString *)keyPath ofObject:(id)object change:(NSDictionary *)change context:(void *)context {
+- (void)observeValueForKeyPath:(NSString *)keyPath
+                      ofObject:(id)object
+                        change:(NSDictionary *)change
+                       context:(void *)context
+{
     if (context != SSContext) {
         return;
     }
@@ -447,3 +465,4 @@ static void *SSContext = &SSContext;
 }
 
 @end
+
