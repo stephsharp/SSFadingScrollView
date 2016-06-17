@@ -15,7 +15,7 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <view key="tableFooterView" contentMode="scaleToFill" id="Jiw-8j-pi9" userLabel="Footer View">
-                            <rect key="frame" x="0.0" y="132" width="320" height="0.0"/>
+                            <rect key="frame" x="0.0" y="176" width="320" height="0.0"/>
                             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                             <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         </view>
@@ -69,7 +69,7 @@
                                             <rect key="frame" x="0.0" y="0.0" width="287" height="43.5"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
-                                                <label opaque="NO" multipleTouchEnabled="YES" contentMode="left" text="Fade images" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="GE2-Vc-5Ze">
+                                                <label opaque="NO" multipleTouchEnabled="YES" contentMode="left" text="Fade vertical images" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="GE2-Vc-5Ze">
                                                     <rect key="frame" x="15" y="0.0" width="270" height="43.5"/>
                                                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                                     <fontDescription key="fontDescription" type="system" pointSize="16"/>
@@ -80,6 +80,26 @@
                                         </tableViewCellContentView>
                                         <connections>
                                             <segue destination="QLf-3k-mS9" kind="push" id="w7P-mU-vPq"/>
+                                        </connections>
+                                    </tableViewCell>
+                                    <tableViewCell contentMode="scaleToFill" selectionStyle="default" accessoryType="disclosureIndicator" indentationWidth="10" textLabel="eoQ-30-hCY" style="IBUITableViewCellStyleDefault" id="jat-fJ-Z6B">
+                                        <rect key="frame" x="0.0" y="132" width="320" height="44"/>
+                                        <autoresizingMask key="autoresizingMask"/>
+                                        <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="jat-fJ-Z6B" id="AbZ-2H-MXE">
+                                            <rect key="frame" x="0.0" y="0.0" width="287" height="43.5"/>
+                                            <autoresizingMask key="autoresizingMask"/>
+                                            <subviews>
+                                                <label opaque="NO" multipleTouchEnabled="YES" contentMode="left" text="Fade horizontal images" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="eoQ-30-hCY">
+                                                    <rect key="frame" x="15" y="0.0" width="270" height="43.5"/>
+                                                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                                    <fontDescription key="fontDescription" type="system" pointSize="16"/>
+                                                    <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                                                    <nil key="highlightedColor"/>
+                                                </label>
+                                            </subviews>
+                                        </tableViewCellContentView>
+                                        <connections>
+                                            <segue destination="edx-9d-ugb" kind="push" id="PXB-qa-FlJ"/>
                                         </connections>
                                     </tableViewCell>
                                 </cells>
@@ -170,7 +190,7 @@ Maecenas sagittis eu felis sed pellentesque. Integer varius justo sem, sed viver
             </objects>
             <point key="canvasLocation" x="1511" y="289"/>
         </scene>
-        <!--Fade images-->
+        <!--Fade vertical images-->
         <scene sceneID="UWi-D7-ydh">
             <objects>
                 <viewController id="QLf-3k-mS9" sceneMemberID="viewController">
@@ -231,7 +251,7 @@ Maecenas sagittis eu felis sed pellentesque. Integer varius justo sem, sed viver
                             <constraint firstItem="AIq-gt-OWf" firstAttribute="top" secondItem="iAb-BL-UjD" secondAttribute="bottom" id="uAS-MY-fqd"/>
                         </constraints>
                     </view>
-                    <navigationItem key="navigationItem" title="Fade images" id="6yZ-13-EuN"/>
+                    <navigationItem key="navigationItem" title="Fade vertical images" id="6yZ-13-EuN"/>
                     <freeformSimulatedSizeMetrics key="simulatedDestinationMetrics"/>
                     <size key="freeformSize" width="320" height="1024"/>
                 </viewController>
@@ -335,6 +355,80 @@ Maecenas sagittis eu felis sed pellentesque. Integer varius justo sem, sed viver
                 <placeholder placeholderIdentifier="IBFirstResponder" id="55A-a1-tAK" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="1511" y="971"/>
+        </scene>
+        <!--Fade horizontal images-->
+        <scene sceneID="i3e-XM-4Aa">
+            <objects>
+                <viewController id="edx-9d-ugb" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="QEp-Wk-9WG"/>
+                        <viewControllerLayoutGuide type="bottom" id="wrG-cj-Pym"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="hSO-lU-Rel">
+                        <rect key="frame" x="0.0" y="64" width="320" height="960"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <scrollView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" showsHorizontalScrollIndicator="NO" showsVerticalScrollIndicator="NO" translatesAutoresizingMaskIntoConstraints="NO" id="VxD-ra-tQ0" customClass="SSFadingScrollView">
+                                <rect key="frame" x="0.0" y="0.0" width="320" height="320"/>
+                                <subviews>
+                                    <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="coffee-1" translatesAutoresizingMaskIntoConstraints="NO" id="v8x-uw-Cbh">
+                                        <rect key="frame" x="0.0" y="0.0" width="320" height="320"/>
+                                        <constraints>
+                                            <constraint firstAttribute="width" secondItem="v8x-uw-Cbh" secondAttribute="height" multiplier="1:1" id="JMv-I1-Y5B"/>
+                                        </constraints>
+                                    </imageView>
+                                    <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="coffee-2" translatesAutoresizingMaskIntoConstraints="NO" id="kiw-65-28b">
+                                        <rect key="frame" x="320" y="0.0" width="320" height="320"/>
+                                        <constraints>
+                                            <constraint firstAttribute="width" secondItem="kiw-65-28b" secondAttribute="height" multiplier="1:1" id="0Ju-Xj-MVD"/>
+                                        </constraints>
+                                    </imageView>
+                                    <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="coffee-3" translatesAutoresizingMaskIntoConstraints="NO" id="H90-aV-JTe">
+                                        <rect key="frame" x="640" y="0.0" width="320" height="320"/>
+                                    </imageView>
+                                </subviews>
+                                <constraints>
+                                    <constraint firstAttribute="trailing" secondItem="H90-aV-JTe" secondAttribute="trailing" id="2OU-kZ-jXH"/>
+                                    <constraint firstItem="v8x-uw-Cbh" firstAttribute="centerY" secondItem="VxD-ra-tQ0" secondAttribute="centerY" id="2kY-Oo-N4H"/>
+                                    <constraint firstItem="H90-aV-JTe" firstAttribute="leading" secondItem="kiw-65-28b" secondAttribute="trailing" id="GVI-wc-ha1"/>
+                                    <constraint firstItem="H90-aV-JTe" firstAttribute="width" secondItem="H90-aV-JTe" secondAttribute="height" multiplier="1:1" id="TFr-0r-27x"/>
+                                    <constraint firstItem="H90-aV-JTe" firstAttribute="top" secondItem="VxD-ra-tQ0" secondAttribute="top" id="aSW-k6-t3p"/>
+                                    <constraint firstAttribute="bottom" secondItem="v8x-uw-Cbh" secondAttribute="bottom" id="cmv-mV-cQG"/>
+                                    <constraint firstItem="v8x-uw-Cbh" firstAttribute="top" secondItem="VxD-ra-tQ0" secondAttribute="top" id="n1n-eC-2fp"/>
+                                    <constraint firstItem="kiw-65-28b" firstAttribute="top" secondItem="VxD-ra-tQ0" secondAttribute="top" id="tz6-W0-sEJ"/>
+                                    <constraint firstItem="v8x-uw-Cbh" firstAttribute="leading" secondItem="VxD-ra-tQ0" secondAttribute="leading" id="v63-vc-b4R"/>
+                                    <constraint firstItem="kiw-65-28b" firstAttribute="leading" secondItem="v8x-uw-Cbh" secondAttribute="trailing" id="xI3-9V-CLx"/>
+                                </constraints>
+                                <userDefinedRuntimeAttributes>
+                                    <userDefinedRuntimeAttribute type="boolean" keyPath="maskScrollBars" value="NO"/>
+                                    <userDefinedRuntimeAttribute type="number" keyPath="fadeHeight">
+                                        <real key="value" value="100"/>
+                                    </userDefinedRuntimeAttribute>
+                                    <userDefinedRuntimeAttribute type="boolean" keyPath="fadeLeadingEdge" value="YES"/>
+                                    <userDefinedRuntimeAttribute type="boolean" keyPath="fadeTrailingEdge" value="YES"/>
+                                    <userDefinedRuntimeAttribute type="number" keyPath="fadeAxis">
+                                        <integer key="value" value="1"/>
+                                    </userDefinedRuntimeAttribute>
+                                </userDefinedRuntimeAttributes>
+                            </scrollView>
+                        </subviews>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <constraints>
+                            <constraint firstAttribute="trailing" secondItem="VxD-ra-tQ0" secondAttribute="trailing" id="8mQ-Jw-Ccs"/>
+                            <constraint firstItem="kiw-65-28b" firstAttribute="width" secondItem="hSO-lU-Rel" secondAttribute="width" id="Sth-AZ-3TG"/>
+                            <constraint firstItem="VxD-ra-tQ0" firstAttribute="leading" secondItem="hSO-lU-Rel" secondAttribute="leading" id="TN7-o9-UKh"/>
+                            <constraint firstItem="v8x-uw-Cbh" firstAttribute="width" secondItem="hSO-lU-Rel" secondAttribute="width" id="kYP-SQ-Fb5"/>
+                            <constraint firstItem="H90-aV-JTe" firstAttribute="width" secondItem="hSO-lU-Rel" secondAttribute="width" id="pl9-By-B3W"/>
+                            <constraint firstItem="VxD-ra-tQ0" firstAttribute="top" secondItem="hSO-lU-Rel" secondAttribute="top" id="tD5-yI-YPB"/>
+                        </constraints>
+                    </view>
+                    <navigationItem key="navigationItem" title="Fade horizontal images" id="OZ5-bB-Cjt"/>
+                    <freeformSimulatedSizeMetrics key="simulatedDestinationMetrics"/>
+                    <size key="freeformSize" width="320" height="1024"/>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="Nhc-u2-7M5" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="2319" y="510"/>
         </scene>
     </scenes>
     <resources>
