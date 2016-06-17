@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="9059" systemVersion="15B42" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" initialViewController="cGD-hZ-mgC">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="10117" systemVersion="15F34" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" initialViewController="cGD-hZ-mgC">
     <dependencies>
         <deployment identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="9049"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="10085"/>
         <capability name="Aspect ratio constraints" minToolsVersion="5.1"/>
     </dependencies>
     <scenes>
@@ -13,12 +13,10 @@
                     <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="static" style="plain" separatorStyle="default" rowHeight="44" sectionHeaderHeight="22" sectionFooterHeight="22" id="2lX-9I-nlF">
                         <rect key="frame" x="0.0" y="64" width="320" height="504"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
-                        <animations/>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <view key="tableFooterView" contentMode="scaleToFill" id="Jiw-8j-pi9" userLabel="Footer View">
                             <rect key="frame" x="0.0" y="132" width="320" height="0.0"/>
                             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                            <animations/>
                             <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         </view>
                         <sections>
@@ -34,15 +32,12 @@
                                                 <label opaque="NO" multipleTouchEnabled="YES" contentMode="left" text="Fade text" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="AjN-qE-DKl">
                                                     <rect key="frame" x="15" y="0.0" width="270" height="43.5"/>
                                                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                                    <animations/>
                                                     <fontDescription key="fontDescription" type="system" pointSize="16"/>
                                                     <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
                                                     <nil key="highlightedColor"/>
                                                 </label>
                                             </subviews>
-                                            <animations/>
                                         </tableViewCellContentView>
-                                        <animations/>
                                         <connections>
                                             <segue destination="2" kind="push" id="RFF-p0-zpx"/>
                                         </connections>
@@ -57,15 +52,12 @@
                                                 <label opaque="NO" multipleTouchEnabled="YES" contentMode="left" text="Fade top only" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="KQZ-n6-8HU">
                                                     <rect key="frame" x="15" y="0.0" width="270" height="43.5"/>
                                                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                                    <animations/>
                                                     <fontDescription key="fontDescription" type="system" pointSize="16"/>
                                                     <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
                                                     <nil key="highlightedColor"/>
                                                 </label>
                                             </subviews>
-                                            <animations/>
                                         </tableViewCellContentView>
-                                        <animations/>
                                         <connections>
                                             <segue destination="dQp-cb-74W" kind="push" id="5xc-Fn-lFy"/>
                                         </connections>
@@ -80,15 +72,12 @@
                                                 <label opaque="NO" multipleTouchEnabled="YES" contentMode="left" text="Fade images" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="GE2-Vc-5Ze">
                                                     <rect key="frame" x="15" y="0.0" width="270" height="43.5"/>
                                                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                                    <animations/>
                                                     <fontDescription key="fontDescription" type="system" pointSize="16"/>
                                                     <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
                                                     <nil key="highlightedColor"/>
                                                 </label>
                                             </subviews>
-                                            <animations/>
                                         </tableViewCellContentView>
-                                        <animations/>
                                         <connections>
                                             <segue destination="QLf-3k-mS9" kind="push" id="w7P-mU-vPq"/>
                                         </connections>
@@ -126,7 +115,6 @@
                                 <subviews>
                                     <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Xlp-9H-yHd">
                                         <rect key="frame" x="16" y="8" width="288" height="1387"/>
-                                        <animations/>
                                         <string key="text">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Aenean nunc nisi, tincidunt nec nisl a, sodales volutpat dolor. Maecenas molestie a libero a lacinia. 
 
 Fusce sodales euismod arcu, molestie viverra est mattis in. Donec pharetra ligula in elit aliquam ullamcorper. Praesent sed lobortis tellus. Aenean laoreet nibh vel pharetra dignissim. 
@@ -157,7 +145,6 @@ Maecenas sagittis eu felis sed pellentesque. Integer varius justo sem, sed viver
                                         <nil key="highlightedColor"/>
                                     </label>
                                 </subviews>
-                                <animations/>
                                 <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                                 <constraints>
                                     <constraint firstAttribute="trailing" secondItem="Xlp-9H-yHd" secondAttribute="trailing" constant="16" id="7lR-vS-Vhi"/>
@@ -167,7 +154,6 @@ Maecenas sagittis eu felis sed pellentesque. Integer varius justo sem, sed viver
                                 </constraints>
                             </scrollView>
                         </subviews>
-                        <animations/>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <constraints>
                             <constraint firstItem="Eio-F9-JcA" firstAttribute="trailing" secondItem="3" secondAttribute="trailing" id="Dom-O5-jVa"/>
@@ -201,24 +187,20 @@ Maecenas sagittis eu felis sed pellentesque. Integer varius justo sem, sed viver
                                 <subviews>
                                     <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="coffee-1" translatesAutoresizingMaskIntoConstraints="NO" id="TtR-j1-QVf">
                                         <rect key="frame" x="0.0" y="0.0" width="320" height="320"/>
-                                        <animations/>
                                         <constraints>
                                             <constraint firstAttribute="width" secondItem="TtR-j1-QVf" secondAttribute="height" multiplier="1:1" id="qgf-eL-VEL"/>
                                         </constraints>
                                     </imageView>
                                     <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="coffee-2" translatesAutoresizingMaskIntoConstraints="NO" id="ty1-Xv-IQC">
                                         <rect key="frame" x="0.0" y="320" width="320" height="320"/>
-                                        <animations/>
                                         <constraints>
                                             <constraint firstAttribute="width" secondItem="ty1-Xv-IQC" secondAttribute="height" multiplier="1:1" id="rc6-JV-BQt"/>
                                         </constraints>
                                     </imageView>
                                     <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="coffee-3" translatesAutoresizingMaskIntoConstraints="NO" id="GaJ-Ww-jRW">
                                         <rect key="frame" x="0.0" y="640" width="320" height="320"/>
-                                        <animations/>
                                     </imageView>
                                 </subviews>
-                                <animations/>
                                 <constraints>
                                     <constraint firstAttribute="trailing" secondItem="GaJ-Ww-jRW" secondAttribute="trailing" id="1cK-ol-eGj"/>
                                     <constraint firstItem="ty1-Xv-IQC" firstAttribute="top" secondItem="TtR-j1-QVf" secondAttribute="bottom" id="2s1-Cn-V5G"/>
@@ -240,7 +222,6 @@ Maecenas sagittis eu felis sed pellentesque. Integer varius justo sem, sed viver
                                 </userDefinedRuntimeAttributes>
                             </scrollView>
                         </subviews>
-                        <animations/>
                         <color key="backgroundColor" white="0.0" alpha="1" colorSpace="calibratedWhite"/>
                         <constraints>
                             <constraint firstItem="iAb-BL-UjD" firstAttribute="top" secondItem="2VO-aW-6dx" secondAttribute="top" id="6KI-MQ-mne"/>
@@ -266,7 +247,6 @@ Maecenas sagittis eu felis sed pellentesque. Integer varius justo sem, sed viver
                     <navigationBar key="navigationBar" contentMode="scaleToFill" translucent="NO" id="qPk-zE-MDP">
                         <rect key="frame" x="0.0" y="0.0" width="320" height="44"/>
                         <autoresizingMask key="autoresizingMask"/>
-                        <animations/>
                     </navigationBar>
                     <nil name="viewControllers"/>
                     <connections>
@@ -294,7 +274,6 @@ Maecenas sagittis eu felis sed pellentesque. Integer varius justo sem, sed viver
                                 <subviews>
                                     <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="zdT-hq-zB7">
                                         <rect key="frame" x="16" y="8" width="288" height="1387"/>
-                                        <animations/>
                                         <string key="text">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Aenean nunc nisi, tincidunt nec nisl a, sodales volutpat dolor. Maecenas molestie a libero a lacinia. 
 
 Fusce sodales euismod arcu, molestie viverra est mattis in. Donec pharetra ligula in elit aliquam ullamcorper. Praesent sed lobortis tellus. Aenean laoreet nibh vel pharetra dignissim. 
@@ -325,7 +304,6 @@ Maecenas sagittis eu felis sed pellentesque. Integer varius justo sem, sed viver
                                         <nil key="highlightedColor"/>
                                     </label>
                                 </subviews>
-                                <animations/>
                                 <constraints>
                                     <constraint firstAttribute="trailing" secondItem="zdT-hq-zB7" secondAttribute="trailing" constant="16" id="331-6G-56p"/>
                                     <constraint firstItem="zdT-hq-zB7" firstAttribute="top" secondItem="gvg-6a-eKk" secondAttribute="top" constant="8" id="QIy-vA-tps"/>
@@ -342,7 +320,6 @@ Maecenas sagittis eu felis sed pellentesque. Integer varius justo sem, sed viver
                                 </userDefinedRuntimeAttributes>
                             </scrollView>
                         </subviews>
-                        <animations/>
                         <color key="backgroundColor" cocoaTouchSystemColor="groupTableViewBackgroundColor"/>
                         <constraints>
                             <constraint firstAttribute="trailing" secondItem="zdT-hq-zB7" secondAttribute="trailing" constant="16" id="3Y1-Sj-o22"/>

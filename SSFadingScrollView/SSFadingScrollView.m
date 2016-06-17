@@ -6,7 +6,7 @@
 #import "SSFadingScrollView.h"
 #import <QuartzCore/QuartzCore.h>
 
-static CGFloat const SSDefaultFadeHeight = 30.0f;
+static CGFloat const SSDefaultFadeSize = 30.0f;
 static CFTimeInterval const SSDefaultFadeDuration = 0.3;
 static void *SSContext = &SSContext;
 
@@ -14,8 +14,6 @@ static void *SSContext = &SSContext;
 
 @property (nonatomic) CALayer *maskLayer;
 @property (nonatomic) CAGradientLayer *gradientLayer;
-@property (nonatomic) BOOL topGradientIsHidden;
-@property (nonatomic) BOOL bottomGradientIsHidden;
 
 @property (nonatomic) UIImageView *verticalScrollBar;
 @property (nonatomic) UIImageView *horizontalScrollBar;
@@ -28,41 +26,25 @@ static void *SSContext = &SSContext;
 
 #pragma mark - Initializers
 
-- (instancetype)initWithFadeHeight:(CGFloat)fadeHeight edges:(FadeEdges)fadeEdges
+- (instancetype)initWithFadeSize:(CGFloat)fadeSize axis:(SSScrollViewFadeAxis)fadeAxis
 {
     self = [super initWithFrame:CGRectZero];
     if (self) {
-        _fadeHeight = fadeHeight;
-        _fadeDuration = SSDefaultFadeDuration;
-
-        switch (fadeEdges) {
-            case FadeEdgesTopAndBottom:
-                _fadeTop = YES;
-                _fadeBottom = YES;
-                break;
-            case FadeEdgesTop:
-                _fadeTop = YES;
-                _fadeBottom = NO;
-                break;
-            case FadeEdgesBottom:
-                _fadeTop = NO;
-                _fadeBottom = YES;
-                break;
-            default:
-                break;
-        }
+        [self setDefaults];
+        _fadeSize = fadeSize;
+        _fadeAxis = fadeAxis;
     }
     return self;
 }
 
-- (instancetype)initWithFadeHeight:(CGFloat)fadeHeight
+- (instancetype)initWithFadeSize:(CGFloat)fadeSize
 {
-    return [self initWithFadeHeight:fadeHeight edges:FadeEdgesTopAndBottom];
+    return [self initWithFadeSize:fadeSize axis:SSScrollViewFadeAxisVertical];
 }
 
 - (instancetype)init
 {
-    return [self initWithFadeHeight:SSDefaultFadeHeight];
+    return [self initWithFadeSize:SSDefaultFadeSize];
 }
 
 - (instancetype)initWithFrame:(CGRect)frame
@@ -86,9 +68,10 @@ static void *SSContext = &SSContext;
 
 - (void)setDefaults
 {
-    _fadeTop = YES;
-    _fadeBottom = YES;
-    _fadeHeight = SSDefaultFadeHeight;
+    _fadeAxis = SSScrollViewFadeAxisVertical;
+    _fadeLeadingEdge = YES;
+    _fadeTrailingEdge = YES;
+    _fadeSize = SSDefaultFadeSize;
     _fadeDuration = SSDefaultFadeDuration;
     _maskScrollBars = YES;
 }
@@ -125,24 +108,24 @@ static void *SSContext = &SSContext;
 - (void)updateGradients
 {
     self.gradientLayer.frame = self.maskLayer.bounds;
-    NSInteger contentOffsetY = roundf(self.contentOffset.y);
+    NSInteger contentOffset = roundf(self.fadeAxis == SSScrollViewFadeAxisVertical ? self.contentOffset.y : self.contentOffset.x);
 
-    if (self.fadeTop) {
-        if (!self.topGradientIsHidden && contentOffsetY <= 0) {
-            [self animateTopGradientToColor:[SSFadingScrollView opaqueColor]]; // fade out
+    if (self.fadeLeadingEdge) {
+        if (!self.leadingGradientIsHidden && contentOffset <= 0) {
+            [self animateLeadingGradientToColor:[SSFadingScrollView opaqueColor]]; // fade out
         }
-        else if (self.topGradientIsHidden && contentOffsetY > 0) {
-            [self animateTopGradientToColor:[SSFadingScrollView transparentColor]]; // fade in
+        else if (self.leadingGradientIsHidden && contentOffset > 0) {
+            [self animateLeadingGradientToColor:[SSFadingScrollView transparentColor]]; // fade in
         }
     }
-    if (self.fadeBottom) {
-        NSInteger maxContentOffset = roundf(self.contentSize.height - CGRectGetHeight(self.bounds));
+    if (self.fadeTrailingEdge) {
+        NSInteger maxContentOffset = roundf(self.fadeAxis == SSScrollViewFadeAxisVertical ? (self.contentSize.height - CGRectGetHeight(self.bounds)) : (self.contentSize.width - CGRectGetWidth(self.bounds)));
 
-        if (!self.bottomGradientIsHidden && contentOffsetY >= maxContentOffset) {
-            [self animateBottomGradientToColor:[SSFadingScrollView opaqueColor]];
+        if (!self.trailingGradientIsHidden && contentOffset >= maxContentOffset) {
+            [self animateTrailingGradientToColor:[SSFadingScrollView opaqueColor]];
         }
-        else if (self.bottomGradientIsHidden && contentOffsetY < maxContentOffset) {
-            [self animateBottomGradientToColor:[SSFadingScrollView transparentColor]];
+        else if (self.trailingGradientIsHidden && contentOffset < maxContentOffset) {
+            [self animateTrailingGradientToColor:[SSFadingScrollView transparentColor]];
         }
     }
 }
@@ -175,13 +158,13 @@ static void *SSContext = &SSContext;
     return _horizontalScrollBarLayer;
 }
 
-- (BOOL)topGradientIsHidden
+- (BOOL)leadingGradientIsHidden
 {
     CGColorRef firstColor = (__bridge CGColorRef)self.gradientLayer.colors.firstObject;
     return CGColorEqualToColor(firstColor, [SSFadingScrollView opaqueColor]);
 }
 
-- (BOOL)bottomGradientIsHidden
+- (BOOL)trailingGradientIsHidden
 {
     CGColorRef lastColor = (__bridge CGColorRef)self.gradientLayer.colors.lastObject;
     return CGColorEqualToColor(lastColor, [SSFadingScrollView opaqueColor]);
@@ -234,46 +217,52 @@ static void *SSContext = &SSContext;
     NSArray *gradientColors = [NSArray new];
     NSArray *gradientLocations = [NSArray new];
 
-    CGFloat fadePercentage = [self percentageForFadeHeight];
+    CGFloat fadePercentage = [self percentageForFadeSize];
 
-    if (self.fadeTop) {
+    if (self.fadeLeadingEdge) {
         gradientColors = @[transparent, opaque];
         gradientLocations = @[@(0), @(fadePercentage)];
     }
-    if (self.fadeBottom) {
+    if (self.fadeTrailingEdge) {
         gradientColors = [gradientColors arrayByAddingObjectsFromArray:@[opaque, transparent]];
         gradientLocations = [gradientLocations arrayByAddingObjectsFromArray:@[@(1.0f - fadePercentage), @(1)]];
     }
 
     gradientLayer.colors = gradientColors;
     gradientLayer.locations = gradientLocations;
-    gradientLayer.startPoint = CGPointMake(0.5, 0);
-    gradientLayer.endPoint = CGPointMake(0.5, 1);
+
+    if (self.fadeAxis == SSScrollViewFadeAxisVertical) {
+        gradientLayer.startPoint = CGPointMake(0.5, 0);
+        gradientLayer.endPoint = CGPointMake(0.5, 1);
+    } else {
+        gradientLayer.startPoint = CGPointMake(0, 0.5);
+        gradientLayer.endPoint = CGPointMake(1, 0.5);
+    }
 
     return gradientLayer;
 }
 
-- (CGFloat)percentageForFadeHeight
+- (CGFloat)percentageForFadeSize
 {
-    CGFloat scrollViewHeight = CGRectGetHeight(self.bounds);
+    CGFloat scrollViewSize = self.fadeAxis == SSScrollViewFadeAxisVertical ? CGRectGetHeight(self.bounds) : CGRectGetWidth(self.bounds);
 
-    if (scrollViewHeight <= 0) {
+    if (scrollViewSize <= 0) {
         return 0;
     }
 
-    CGFloat maxFadePercentage = (self.fadeTop && self.fadeBottom) ? 0.5f : 1.0f;
-    return fminf(self.fadeHeight / scrollViewHeight, maxFadePercentage);
+    CGFloat maxFadePercentage = (self.fadeLeadingEdge && self.fadeTrailingEdge) ? 0.5f : 1.0f;
+    return fminf(self.fadeSize / scrollViewSize, maxFadePercentage);
 }
 
 #pragma mark Gradient animation
 
-- (void)animateTopGradientToColor:(CGColorRef)color
+- (void)animateLeadingGradientToColor:(CGColorRef)color
 {
     NSArray *colours = [self colorsArrayByReplacingObjectAtIndex:0 withColor:color];
     [self animateGradientColours:colours];
 }
 
-- (void)animateBottomGradientToColor:(CGColorRef)color
+- (void)animateTrailingGradientToColor:(CGColorRef)color
 {
     NSUInteger lastIndex = self.gradientLayer.colors.count - 1;
     NSArray *colours = [self colorsArrayByReplacingObjectAtIndex:lastIndex withColor:color];
@@ -394,6 +383,67 @@ static void *SSContext = &SSContext;
     if([keyPath isEqualToString:@"alpha"] && [object valueForKeyPath:keyPath] != [NSNull null]) {
         [self layoutSubviews];
     }
+}
+
+#pragma mark - Deprecated
+
+- (instancetype)initWithFadeHeight:(CGFloat)fadeHeight edges:(FadeEdges)fadeEdges
+{
+    self = [self initWithFadeSize:fadeHeight];
+    if (self) {
+        switch (fadeEdges) {
+            case FadeEdgesTopAndBottom:
+                _fadeLeadingEdge = YES;
+                _fadeTrailingEdge = YES;
+                break;
+            case FadeEdgesTop:
+                _fadeLeadingEdge = YES;
+                _fadeTrailingEdge = NO;
+                break;
+            case FadeEdgesBottom:
+                _fadeLeadingEdge = NO;
+                _fadeTrailingEdge = YES;
+                break;
+            default:
+                break;
+        }
+    }
+    return self;
+}
+
+- (instancetype)initWithFadeHeight:(CGFloat)fadeHeight
+{
+    return [self initWithFadeSize:fadeHeight];
+}
+
+- (BOOL)fadeTop;
+{
+    return self.fadeLeadingEdge;
+}
+
+- (void)setFadeTop:(BOOL)fade;
+{
+    self.fadeLeadingEdge = fade;
+}
+
+- (BOOL)fadeBottom;
+{
+    return self.fadeTrailingEdge;
+}
+
+- (void)setFadeBottom:(BOOL)fade;
+{
+    self.fadeTrailingEdge = fade;
+}
+
+- (CGFloat)fadeHeight;
+{
+    return self.fadeSize;
+}
+
+- (void)setFadeHeight:(CGFloat)height;
+{
+    self.fadeSize = height;
 }
 
 @end

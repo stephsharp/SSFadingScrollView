@@ -9,6 +9,7 @@
 *.xcuserstate
 project.xcworkspace/
 xcuserdata/
+DerivedData
 
 # Generated files
 *.o
