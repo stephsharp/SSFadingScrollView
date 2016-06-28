@@ -19,12 +19,12 @@ typedef NS_ENUM(NSUInteger, SSScrollViewFadeAxis) {
 typedef NS_ENUM(NSUInteger, FadeEdges) {
     FadeEdgesTopAndBottom __attribute__((deprecated("Use the fadeLeadingEdge and fadeTrailingEdge properties instead."))),
     FadeEdgesTop __attribute__((deprecated("Use the fadeLeadingEdge property instead."))),
-    FadeEdgesBottom __attribute__((deprecated("Use the fadeLeadingEdge property instead."))),
+    FadeEdgesBottom __attribute__((deprecated("Use the fadeTrailingEdge property instead."))),
 };
 
 /**
- * This scrollview subclass is meant to only scroll on 1 direction, on that axis either or both the
- * leading and trailing can be faded.
+ * This scrollview subclass is meant to only scroll in one direction (horizontal or vertical).
+ * On the chosen axis, either or both the leading and trailing edges can be faded.
  */
 @interface SSFadingScrollView : UIScrollView
 
