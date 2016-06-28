@@ -188,7 +188,7 @@ Maecenas sagittis eu felis sed pellentesque. Integer varius justo sem, sed viver
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="4" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1511" y="289"/>
+            <point key="canvasLocation" x="1511" y="295"/>
         </scene>
         <!--Fade vertical images-->
         <scene sceneID="UWi-D7-ydh">
@@ -236,7 +236,7 @@ Maecenas sagittis eu felis sed pellentesque. Integer varius justo sem, sed viver
                                 </constraints>
                                 <userDefinedRuntimeAttributes>
                                     <userDefinedRuntimeAttribute type="boolean" keyPath="maskScrollBars" value="NO"/>
-                                    <userDefinedRuntimeAttribute type="number" keyPath="fadeHeight">
+                                    <userDefinedRuntimeAttribute type="number" keyPath="fadeSize">
                                         <real key="value" value="100"/>
                                     </userDefinedRuntimeAttribute>
                                 </userDefinedRuntimeAttributes>
@@ -257,7 +257,7 @@ Maecenas sagittis eu felis sed pellentesque. Integer varius justo sem, sed viver
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="J2F-fz-cAy" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1905" y="630"/>
+            <point key="canvasLocation" x="1511" y="1192"/>
         </scene>
         <!--Navigation Controller-->
         <scene sceneID="J5J-kG-F0r">
@@ -331,12 +331,12 @@ Maecenas sagittis eu felis sed pellentesque. Integer varius justo sem, sed viver
                                     <constraint firstItem="zdT-hq-zB7" firstAttribute="leading" secondItem="gvg-6a-eKk" secondAttribute="leading" constant="16" id="kmw-2N-P7H"/>
                                 </constraints>
                                 <userDefinedRuntimeAttributes>
-                                    <userDefinedRuntimeAttribute type="number" keyPath="fadeHeight">
+                                    <userDefinedRuntimeAttribute type="number" keyPath="fadeSize">
                                         <real key="value" value="70"/>
                                     </userDefinedRuntimeAttribute>
+                                    <userDefinedRuntimeAttribute type="boolean" keyPath="fadeLeadingEdge" value="YES"/>
+                                    <userDefinedRuntimeAttribute type="boolean" keyPath="fadeTrailingEdge" value="NO"/>
                                     <userDefinedRuntimeAttribute type="boolean" keyPath="maskScrollBars" value="YES"/>
-                                    <userDefinedRuntimeAttribute type="boolean" keyPath="fadeTop" value="YES"/>
-                                    <userDefinedRuntimeAttribute type="boolean" keyPath="fadeBottom" value="NO"/>
                                 </userDefinedRuntimeAttributes>
                             </scrollView>
                         </subviews>
@@ -354,7 +354,7 @@ Maecenas sagittis eu felis sed pellentesque. Integer varius justo sem, sed viver
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="55A-a1-tAK" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1511" y="971"/>
+            <point key="canvasLocation" x="1899" y="295"/>
         </scene>
         <!--Fade horizontal images-->
         <scene sceneID="i3e-XM-4Aa">
@@ -365,7 +365,7 @@ Maecenas sagittis eu felis sed pellentesque. Integer varius justo sem, sed viver
                         <viewControllerLayoutGuide type="bottom" id="wrG-cj-Pym"/>
                     </layoutGuides>
                     <view key="view" contentMode="scaleToFill" id="hSO-lU-Rel">
-                        <rect key="frame" x="0.0" y="64" width="320" height="960"/>
+                        <rect key="frame" x="0.0" y="64" width="320" height="504"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <scrollView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" showsHorizontalScrollIndicator="NO" showsVerticalScrollIndicator="NO" translatesAutoresizingMaskIntoConstraints="NO" id="VxD-ra-tQ0" customClass="SSFadingScrollView">
@@ -401,13 +401,13 @@ Maecenas sagittis eu felis sed pellentesque. Integer varius justo sem, sed viver
                                 </constraints>
                                 <userDefinedRuntimeAttributes>
                                     <userDefinedRuntimeAttribute type="boolean" keyPath="maskScrollBars" value="NO"/>
-                                    <userDefinedRuntimeAttribute type="number" keyPath="fadeHeight">
-                                        <real key="value" value="100"/>
-                                    </userDefinedRuntimeAttribute>
                                     <userDefinedRuntimeAttribute type="boolean" keyPath="fadeLeadingEdge" value="YES"/>
                                     <userDefinedRuntimeAttribute type="boolean" keyPath="fadeTrailingEdge" value="YES"/>
                                     <userDefinedRuntimeAttribute type="number" keyPath="fadeAxis">
                                         <integer key="value" value="1"/>
+                                    </userDefinedRuntimeAttribute>
+                                    <userDefinedRuntimeAttribute type="number" keyPath="fadeSize">
+                                        <real key="value" value="70"/>
                                     </userDefinedRuntimeAttribute>
                                 </userDefinedRuntimeAttributes>
                             </scrollView>
@@ -423,12 +423,10 @@ Maecenas sagittis eu felis sed pellentesque. Integer varius justo sem, sed viver
                         </constraints>
                     </view>
                     <navigationItem key="navigationItem" title="Fade horizontal images" id="OZ5-bB-Cjt"/>
-                    <freeformSimulatedSizeMetrics key="simulatedDestinationMetrics"/>
-                    <size key="freeformSize" width="320" height="1024"/>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Nhc-u2-7M5" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="2319" y="510"/>
+            <point key="canvasLocation" x="1899" y="964"/>
         </scene>
     </scenes>
     <resources>
