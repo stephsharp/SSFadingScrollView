@@ -165,30 +165,33 @@ extension SSFadingScrollView {
         updateScrollBarMasks()
     }
     
+    fileprivate func updateLeadingFade(_ contentOffset: Int) {
+        if !leadingGradientIsHidden && contentOffset <= 0 {
+            animateLeadingGradient(to: opaqueColor) // fade out
+        } else if leadingGradientIsHidden && contentOffset > 0 {
+            animateLeadingGradient(to: transparentColor) // fade in
+        }
+    }
+    
+    fileprivate func updateTrailingFade(_ contentOffset: Int) {
+        let maxContentOffset = isVertical ? Float(contentSize.height - bounds.height) : Float(contentSize.width - bounds.width)
+        
+        if !trailingGradientIsHidden && contentOffset >= Int(roundf(maxContentOffset)) {
+            animateTrailingGradient(to: opaqueColor)
+        } else if trailingGradientIsHidden && contentOffset < Int(roundf(maxContentOffset)) {
+            animateTrailingGradient(to: transparentColor)
+        }
+    }
+    
     func updateGradients() {
         gradientLayer.frame = maskLayer.bounds
         let contentOffset = Int(roundf(Float(isVertical ? self.contentOffset.y : self.contentOffset.x)))
         
         if fadeLeadingEdge {
-            if !leadingGradientIsHidden && contentOffset <= 0 {
-                animateLeadingGradient(to: opaqueColor) // fade out
-            } else if leadingGradientIsHidden && contentOffset > 0 {
-                animateLeadingGradient(to: transparentColor) // fade in
-            }
+            updateLeadingFade(contentOffset)
         }
         if fadeTrailingEdge {
-            var maxContentOffset: Int
-            if isVertical {
-                maxContentOffset = Int(roundf(Float(contentSize.height - bounds.height)))
-            } else {
-                maxContentOffset = Int(roundf(Float(contentSize.width - bounds.width)))
-            }
-            
-            if !trailingGradientIsHidden && contentOffset >= maxContentOffset {
-                animateTrailingGradient(to: opaqueColor)
-            } else if trailingGradientIsHidden && contentOffset < maxContentOffset {
-                animateTrailingGradient(to: transparentColor)
-            }
+            updateTrailingFade(contentOffset)
         }
     }
     
