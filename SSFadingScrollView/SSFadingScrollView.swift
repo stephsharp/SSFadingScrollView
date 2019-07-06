@@ -321,16 +321,16 @@ extension SSFadingScrollView {
         return mutableColours
     }
     
-    func animateGradientColours(_ colours: [Any]?) {
+    func animateGradientColors(_ colors: [CGColor]) {
         let animation = CABasicAnimation(keyPath: #keyPath(CAGradientLayer.colors))
         animation.fromValue = (gradientLayer.presentation())?.colors
-        animation.toValue = colours
+        animation.toValue = colors
         animation.duration = fadeDuration
         animation.timingFunction = CAMediaTimingFunction(name: .easeOut)
         
         CATransaction.begin()
         CATransaction.setDisableActions(true)
-        gradientLayer.colors = colours // update the model value
+        gradientLayer.colors = colors // update the model value
         CATransaction.commit()
         
         gradientLayer.add(animation, forKey: "animateGradient")
