@@ -14,12 +14,6 @@ import QuartzCore
     case horizontal = 1
 }
 
-@objc enum FadeEdges: Int {
-    case FadeEdgesTopAndBottom
-    case FadeEdgesTop
-    case FadeEdgesBottom
-}
-
 private let SSDefaultFadeSize: CGFloat = 30.0
 private let SSDefaultFadeDuration: CFTimeInterval = 0.3
 
