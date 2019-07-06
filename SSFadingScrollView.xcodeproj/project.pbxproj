@@ -47,7 +47,7 @@
 /* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
-		15BEF56A22B62D2500CFB6CF /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/MainStoryboard.storyboard; sourceTree = "<group>"; };
+		152EDF8422D113810082A3BA /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/MainStoryboard.storyboard; sourceTree = "<group>"; };
 		15BEF56B22B62DBA00CFB6CF /* SSFadingScrollView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SSFadingScrollView.swift; sourceTree = "<group>"; };
 		82630F641B63A4EE003B4CCA /* Images.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Images.xcassets; sourceTree = "<group>"; };
 		82B3A68D1C031A13000024C3 /* SSFadingScrollView.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = SSFadingScrollView.framework; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -296,7 +296,7 @@
 		970FDD8A17A7A512008DC2FB /* MainStoryboard.storyboard */ = {
 			isa = PBXVariantGroup;
 			children = (
-				15BEF56A22B62D2500CFB6CF /* Base */,
+				152EDF8422D113810082A3BA /* Base */,
 			);
 			name = MainStoryboard.storyboard;
 			sourceTree = "<group>";

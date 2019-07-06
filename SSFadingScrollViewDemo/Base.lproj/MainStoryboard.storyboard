@@ -1,6 +1,10 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="14490.70" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" colorMatched="YES" initialViewController="cGD-hZ-mgC">
+    <device id="retina6_1" orientation="portrait">
+        <adaptation id="fullscreen"/>
+    </device>
     <dependencies>
+        <deployment identifier="iOS"/>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="14490.49"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
@@ -9,8 +13,8 @@
         <scene sceneID="kTh-15-oFl">
             <objects>
                 <tableViewController id="NSC-1y-vKk" sceneMemberID="viewController">
-                    <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" misplaced="YES" alwaysBounceVertical="YES" dataMode="static" style="plain" separatorStyle="default" rowHeight="44" sectionHeaderHeight="22" sectionFooterHeight="22" id="2lX-9I-nlF">
-                        <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
+                    <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="static" style="plain" separatorStyle="default" rowHeight="44" sectionHeaderHeight="22" sectionFooterHeight="22" id="2lX-9I-nlF">
+                        <rect key="frame" x="0.0" y="0.0" width="414" height="808"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                         <view key="tableFooterView" contentMode="scaleToFill" id="Jiw-8j-pi9" userLabel="Footer View">
@@ -125,12 +129,12 @@
                         <viewControllerLayoutGuide type="top" id="lG0-hZ-Vnt"/>
                         <viewControllerLayoutGuide type="bottom" id="iQf-c9-JiZ"/>
                     </layoutGuides>
-                    <view key="view" contentMode="scaleToFill" misplaced="YES" id="3">
-                        <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
+                    <view key="view" contentMode="scaleToFill" id="3">
+                        <rect key="frame" x="0.0" y="0.0" width="414" height="808"/>
                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                         <subviews>
                             <scrollView opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Eio-F9-JcA" customClass="SSFadingScrollView" customModule="SSFadingScrollView">
-                                <rect key="frame" x="0.0" y="0.0" width="414" height="832"/>
+                                <rect key="frame" x="0.0" y="0.0" width="414" height="808"/>
                                 <subviews>
                                     <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Xlp-9H-yHd">
                                         <rect key="frame" x="16" y="8" width="382" height="1069.5"/>
@@ -187,7 +191,7 @@ Maecenas sagittis eu felis sed pellentesque. Integer varius justo sem, sed viver
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="4" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="2317" y="-66"/>
+            <point key="canvasLocation" x="2259" y="-2"/>
         </scene>
         <!--Fade vertical images-->
         <scene sceneID="UWi-D7-ydh">
@@ -197,12 +201,12 @@ Maecenas sagittis eu felis sed pellentesque. Integer varius justo sem, sed viver
                         <viewControllerLayoutGuide type="top" id="FtF-Zt-02D"/>
                         <viewControllerLayoutGuide type="bottom" id="AIq-gt-OWf"/>
                     </layoutGuides>
-                    <view key="view" contentMode="scaleToFill" misplaced="YES" id="2VO-aW-6dx">
-                        <rect key="frame" x="0.0" y="0.0" width="320" height="1024"/>
+                    <view key="view" contentMode="scaleToFill" id="2VO-aW-6dx">
+                        <rect key="frame" x="0.0" y="0.0" width="320" height="936"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <scrollView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" showsHorizontalScrollIndicator="NO" showsVerticalScrollIndicator="NO" translatesAutoresizingMaskIntoConstraints="NO" id="iAb-BL-UjD" customClass="SSFadingScrollView" customModule="SSFadingScrollView">
-                                <rect key="frame" x="0.0" y="0.0" width="320" height="954"/>
+                                <rect key="frame" x="0.0" y="0.0" width="320" height="902"/>
                                 <subviews>
                                     <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="coffee-1" translatesAutoresizingMaskIntoConstraints="NO" id="TtR-j1-QVf">
                                         <rect key="frame" x="0.0" y="0.0" width="320" height="320"/>
@@ -256,7 +260,7 @@ Maecenas sagittis eu felis sed pellentesque. Integer varius justo sem, sed viver
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="J2F-fz-cAy" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="2316" y="705"/>
+            <point key="canvasLocation" x="2188" y="784"/>
         </scene>
         <!--Navigation Controller-->
         <scene sceneID="J5J-kG-F0r">
@@ -284,12 +288,12 @@ Maecenas sagittis eu felis sed pellentesque. Integer varius justo sem, sed viver
                         <viewControllerLayoutGuide type="top" id="TPS-gx-aEM"/>
                         <viewControllerLayoutGuide type="bottom" id="Qd4-xY-E0U"/>
                     </layoutGuides>
-                    <view key="view" contentMode="scaleToFill" misplaced="YES" id="E4A-9A-xVl">
-                        <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
+                    <view key="view" contentMode="scaleToFill" id="E4A-9A-xVl">
+                        <rect key="frame" x="0.0" y="0.0" width="414" height="808"/>
                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                         <subviews>
                             <scrollView opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="gvg-6a-eKk" customClass="SSFadingScrollView" customModule="SSFadingScrollView">
-                                <rect key="frame" x="0.0" y="0.0" width="414" height="832"/>
+                                <rect key="frame" x="0.0" y="0.0" width="414" height="808"/>
                                 <subviews>
                                     <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="zdT-hq-zB7">
                                         <rect key="frame" x="16" y="8" width="382" height="1069.5"/>
@@ -353,7 +357,7 @@ Maecenas sagittis eu felis sed pellentesque. Integer varius justo sem, sed viver
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="55A-a1-tAK" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="3533" y="-66"/>
+            <point key="canvasLocation" x="3094" y="-9"/>
         </scene>
         <!--Fade horizontal images-->
         <scene sceneID="i3e-XM-4Aa">
@@ -364,7 +368,7 @@ Maecenas sagittis eu felis sed pellentesque. Integer varius justo sem, sed viver
                         <viewControllerLayoutGuide type="bottom" id="wrG-cj-Pym"/>
                     </layoutGuides>
                     <view key="view" contentMode="scaleToFill" id="hSO-lU-Rel">
-                        <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
+                        <rect key="frame" x="0.0" y="0.0" width="414" height="808"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <scrollView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" showsHorizontalScrollIndicator="NO" showsVerticalScrollIndicator="NO" translatesAutoresizingMaskIntoConstraints="NO" id="VxD-ra-tQ0" customClass="SSFadingScrollView" customModule="SSFadingScrollView">
@@ -425,7 +429,7 @@ Maecenas sagittis eu felis sed pellentesque. Integer varius justo sem, sed viver
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Nhc-u2-7M5" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="3532" y="663"/>
+            <point key="canvasLocation" x="3093" y="742"/>
         </scene>
     </scenes>
     <resources>
