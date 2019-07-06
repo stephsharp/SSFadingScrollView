@@ -304,21 +304,21 @@ extension SSFadingScrollView {
 // MARK: - Gradient animation
 extension SSFadingScrollView {
     func animateLeadingGradient(to color: CGColor) {
-        let colours = colorsArrayByReplacingObject(at: 0, with: color)
-        animateGradientColours(colours)
+        let colors = colorsWithReplacement(at: 0, with: color)
+        animateGradientColors(colors)
     }
     
     func animateTrailingGradient(to color: CGColor) {
         let lastIndex = gradientLayer.colors!.count - 1
-        let colours = colorsArrayByReplacingObject(at: lastIndex, with: color)
-        animateGradientColours(colours)
+        let colors = colorsWithReplacement(at: lastIndex, with: color)
+        animateGradientColors(colors)
     }
     
-    func colorsArrayByReplacingObject(at index: Int, with color: CGColor) -> [CGColor] {
-        var mutableColours = gradientLayer.colors as! [CGColor]
-        mutableColours[index] = color
+    func colorsWithReplacement(at index: Int, with color: CGColor) -> [CGColor] {
+        var mutableColors = gradientLayer.colors as! [CGColor]
+        mutableColors[index] = color
         
-        return mutableColours
+        return mutableColors
     }
     
     func animateGradientColors(_ colors: [CGColor]) {
