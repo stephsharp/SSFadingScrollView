@@ -200,15 +200,14 @@ extension SSFadingScrollView {
         var colors: [CGColor] = []
         var locations: [NSNumber] = []
         
-        let fadePercentage = percentageForFadeSize
-        
         if fadeLeadingEdge {
             colors = [transparentColor, opaqueColor]
-            locations = [NSNumber(value: 0), NSNumber(value: Float(fadePercentage))]
+            locations = [NSNumber(value: 0), NSNumber(value: Float(percentageForFadeSize))]
         }
+        
         if fadeTrailingEdge {
             colors = colors + [opaqueColor, transparentColor]
-            locations = locations + [NSNumber(value: Float(1.0 - fadePercentage)), NSNumber(value: 1)]
+            locations = locations + [NSNumber(value: Float(1.0 - percentageForFadeSize)), NSNumber(value: 1)]
         }
         
         gradientLayer.colors = colors
