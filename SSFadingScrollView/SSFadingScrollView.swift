@@ -112,6 +112,14 @@ class SSFadingScrollView: UIScrollView {
         setDefaults()
     }
     
+    override func layoutSubviews() {
+        super.layoutSubviews()
+        updateMask()
+    }
+}
+
+// MARK: - Setup helpers
+private extension SSFadingScrollView {
     func setDefaults() {
         fadeAxis = .vertical
         fadeLeadingEdge = true
@@ -119,13 +127,6 @@ class SSFadingScrollView: UIScrollView {
         fadeSize = SSDefaultFadeSize
         fadeDuration = SSDefaultFadeDuration
         maskScrollBars = true
-    }
-}
-
-extension SSFadingScrollView {
-    override func layoutSubviews() {
-        super.layoutSubviews()
-        updateMask()
     }
     
     func setupMaskLayer() -> CALayer {
@@ -155,46 +156,6 @@ extension SSFadingScrollView {
         return scrollBar(with: horizontalScrollBar?.frame ?? .zero)
     }
     
-    func updateMask() {
-        CATransaction.begin()
-        CATransaction.setDisableActions(true)
-        maskLayer.frame = bounds
-        CATransaction.commit()
-        
-        updateGradients()
-        updateScrollBarMasks()
-    }
-    
-    fileprivate func updateLeadingFade(_ contentOffset: Int) {
-        if !leadingGradientIsHidden && contentOffset <= 0 {
-            animateLeadingGradient(to: opaqueColor) // fade out
-        } else if leadingGradientIsHidden && contentOffset > 0 {
-            animateLeadingGradient(to: transparentColor) // fade in
-        }
-    }
-    
-    fileprivate func updateTrailingFade(_ contentOffset: Int) {
-        let maxContentOffset = isVertical ? Float(contentSize.height - bounds.height) : Float(contentSize.width - bounds.width)
-        
-        if !trailingGradientIsHidden && contentOffset >= Int(roundf(maxContentOffset)) {
-            animateTrailingGradient(to: opaqueColor)
-        } else if trailingGradientIsHidden && contentOffset < Int(roundf(maxContentOffset)) {
-            animateTrailingGradient(to: transparentColor)
-        }
-    }
-    
-    func updateGradients() {
-        gradientLayer.frame = maskLayer.bounds
-        let contentOffset = Int(roundf(Float(isVertical ? self.contentOffset.y : self.contentOffset.x)))
-        
-        if fadeLeadingEdge {
-            updateLeadingFade(contentOffset)
-        }
-        if fadeTrailingEdge {
-            updateTrailingFade(contentOffset)
-        }
-    }
-    
     func setupGradientLayer() -> CAGradientLayer {
         let gradientLayer = CAGradientLayer()
         gradientLayer.frame = self.bounds
@@ -221,6 +182,49 @@ extension SSFadingScrollView {
         
         return gradientLayer
     }
+}
+
+// MARK: - Update helpers
+private extension SSFadingScrollView {
+    func updateMask() {
+        CATransaction.begin()
+        CATransaction.setDisableActions(true)
+        maskLayer.frame = bounds
+        CATransaction.commit()
+        
+        updateGradients()
+        updateScrollBarMasks()
+    }
+    
+     func updateLeadingFade(_ contentOffset: Int) {
+        if !leadingGradientIsHidden && contentOffset <= 0 {
+            animateLeadingGradient(to: opaqueColor) // fade out
+        } else if leadingGradientIsHidden && contentOffset > 0 {
+            animateLeadingGradient(to: transparentColor) // fade in
+        }
+    }
+    
+     func updateTrailingFade(_ contentOffset: Int) {
+        let maxContentOffset = isVertical ? Float(contentSize.height - bounds.height) : Float(contentSize.width - bounds.width)
+        
+        if !trailingGradientIsHidden && contentOffset >= Int(roundf(maxContentOffset)) {
+            animateTrailingGradient(to: opaqueColor)
+        } else if trailingGradientIsHidden && contentOffset < Int(roundf(maxContentOffset)) {
+            animateTrailingGradient(to: transparentColor)
+        }
+    }
+    
+    func updateGradients() {
+        gradientLayer.frame = maskLayer.bounds
+        let contentOffset = Int(roundf(Float(isVertical ? self.contentOffset.y : self.contentOffset.x)))
+        
+        if fadeLeadingEdge {
+            updateLeadingFade(contentOffset)
+        }
+        if fadeTrailingEdge {
+            updateTrailingFade(contentOffset)
+        }
+    }
     
     func updateScrollBarMasks() {
         guard maskScrollBars else { return }
@@ -240,7 +244,10 @@ extension SSFadingScrollView {
         
         CATransaction.commit()
     }
-    
+}
+
+// MARK: - ScrollBars
+extension SSFadingScrollView {
     func scrollBar(with frame: CGRect) -> CALayer {
         let scrollBarLayer = CALayer()
         scrollBarLayer.backgroundColor = opaqueColor
@@ -249,7 +256,7 @@ extension SSFadingScrollView {
         return scrollBarLayer
     }
     
-    fileprivate func isScrollBar(_ dimension: CGFloat) -> Bool {
+    func isScrollBar(_ dimension: CGFloat) -> Bool {
         return dimension == 3.5 || dimension == 2.5 || ((dimension) < 2.4 && (dimension ) > 2.3)
     }
     
@@ -268,7 +275,7 @@ extension SSFadingScrollView {
 }
 
 // MARK: - Properties
-extension SSFadingScrollView {
+private extension SSFadingScrollView {
     var isVertical: Bool {
         return fadeAxis == .vertical
     }
@@ -304,7 +311,7 @@ extension SSFadingScrollView {
 }
 
 // MARK: - Gradient animation
-extension SSFadingScrollView {
+private extension SSFadingScrollView {
     func animateLeadingGradient(to color: CGColor) {
         let colors = colorsWithReplacement(at: 0, with: color)
         animateGradientColors(colors)
