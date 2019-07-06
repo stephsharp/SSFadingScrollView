@@ -25,35 +25,32 @@ private let SSDefaultFadeDuration: CFTimeInterval = 0.3
 
 @IBDesignable
 class SSFadingScrollView: UIScrollView {
-    /**
-     * Fade leading edge of fade axis. Default is YES.
-     */
-    @IBInspectable var fadeLeadingEdge = false
-    /**
-     * Fade trailing edge of fade axis. Default is YES.
-     */
-    @IBInspectable var fadeTrailingEdge = false
-    /**
-     * Size of gradient. Default is 30.
-     */
-    @IBInspectable var fadeSize: CGFloat = 0.0
-    /**
-     * Duration of fade in & out. Default is 0.3 seconds.
-     */
-    @IBInspectable var fadeDuration = 0.0
-    /**
-     * Default is YES. Scroll bars are masked so they don't fade with the scroll view content.
-     * Set to NO to fade out the scroll bars along with the content.
-     */
-    @IBInspectable var maskScrollBars = false
     
+    /// Fade leading edge of fade axis. Default is YES.
+    @IBInspectable public var fadeLeadingEdge = false
+
+    /// Fade trailing edge of fade axis. Default is YES.
+    @IBInspectable public var fadeTrailingEdge = false
+    
+    /// Size of gradient. Default is 30.
+    @IBInspectable public var fadeSize: CGFloat = 0.0
+    
+    /// Duration of fade in & out. Default is 0.3 seconds.
+    @IBInspectable public var fadeDuration = 0.0
+    
+    /// Default is YES. Scroll bars are masked so they don't fade with the scroll view content.
+    /// Set to NO to fade out the scroll bars along with the content.
+    @IBInspectable public var maskScrollBars = false
+    
+    /// Set up the axis of fading
+    public var fadeAxis: FadeAxis = .vertical
+    
+    /// Set up the axis of fading in Interface Builder
     @available(*, unavailable, message: "This property is reserved for Interface Builder. Use 'fadeAxis' instead.")
     @IBInspectable var axisIB: FadeAxis.RawValue {
         set { fadeAxis = FadeAxis(rawValue: newValue) ?? .vertical }
         get { return fadeAxis.rawValue }
     }
-    
-    var fadeAxis: FadeAxis = .vertical
     
     private lazy var maskLayer: CALayer = {
         return setupMaskLayer()
