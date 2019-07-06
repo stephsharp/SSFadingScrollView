@@ -166,12 +166,12 @@ private extension SSFadingScrollView {
         
         if fadeLeadingEdge {
             colors = [transparentColor, opaqueColor]
-            locations = [NSNumber(value: 0), NSNumber(value: Float(percentageForFadeSize))]
+            locations = [NSNumber(value: 0), NSNumber(value: percentageForFadeSize)]
         }
         
         if fadeTrailingEdge {
             colors = colors + [opaqueColor, transparentColor]
-            locations = locations + [NSNumber(value: Float(1.0 - percentageForFadeSize)), NSNumber(value: 1)]
+            locations = locations + [NSNumber(value: 1.0 - percentageForFadeSize), NSNumber(value: 1)]
         }
         
         gradientLayer.colors = colors
@@ -298,15 +298,15 @@ private extension SSFadingScrollView {
         return UIColor.clear.cgColor
     }
     
-    var percentageForFadeSize: CGFloat {
+    var percentageForFadeSize: Float {
         let size = isVertical ? bounds.height : bounds.width
         
         if size <= 0 {
             return 0
         }
         
-        let maxFadePercentage: CGFloat = (fadeLeadingEdge && fadeTrailingEdge) ? 0.5 : 1.0
-        return CGFloat(fminf(Float(fadeSize / size), Float(maxFadePercentage)))
+        let maxFadePercentage = (fadeLeadingEdge && fadeTrailingEdge) ? Float(0.5) : Float(1.0)
+        return fminf(Float(fadeSize / size), maxFadePercentage)
     }
 }
 
@@ -318,7 +318,9 @@ private extension SSFadingScrollView {
     }
     
     func animateTrailingGradient(to color: CGColor) {
-        let lastIndex = gradientLayer.colors!.count - 1
+        guard let endIndex = gradientLayer.colors?.endIndex else { return }
+        
+        let lastIndex = endIndex - 1
         let colors = colorsWithReplacement(at: lastIndex, with: color)
         animateGradientColors(colors)
     }
