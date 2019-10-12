@@ -5,7 +5,7 @@ Pod::Spec.new do |s|
   s.homepage     = "https://github.com/stephsharp/SSFadingScrollView/"
   s.license      = { :type => "MIT", :file => "LICENSE" }
   s.author       = "Stephanie Sharp"
-  s.platform     = :ios, "8.0"
+  s.platform     = :ios, "9.3"
   s.source       = { :git => "https://github.com/stephsharp/SSFadingScrollView.git", :tag => "v#{s.version}" }
   s.source_files = "SSFadingScrollView"
   s.public_header_files = [ "SSFadingScrollView/SSFadingScrollView.h" ]
