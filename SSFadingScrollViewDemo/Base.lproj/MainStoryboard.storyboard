@@ -133,7 +133,7 @@
                         <rect key="frame" x="0.0" y="0.0" width="414" height="808"/>
                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                         <subviews>
-                            <scrollView opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Eio-F9-JcA" customClass="SSFadingScrollView">
+                            <scrollView opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Eio-F9-JcA" customClass="SSFadingScrollView" customModule="SSFadingScrollView">
                                 <rect key="frame" x="0.0" y="0.0" width="414" height="808"/>
                                 <subviews>
                                     <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Xlp-9H-yHd">
@@ -205,7 +205,7 @@ Maecenas sagittis eu felis sed pellentesque. Integer varius justo sem, sed viver
                         <rect key="frame" x="0.0" y="0.0" width="320" height="936"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <scrollView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" showsHorizontalScrollIndicator="NO" showsVerticalScrollIndicator="NO" translatesAutoresizingMaskIntoConstraints="NO" id="iAb-BL-UjD" customClass="SSFadingScrollView">
+                            <scrollView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" showsHorizontalScrollIndicator="NO" showsVerticalScrollIndicator="NO" translatesAutoresizingMaskIntoConstraints="NO" id="iAb-BL-UjD" customClass="SSFadingScrollView" customModule="SSFadingScrollView">
                                 <rect key="frame" x="0.0" y="0.0" width="320" height="902"/>
                                 <subviews>
                                     <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="coffee-1" translatesAutoresizingMaskIntoConstraints="NO" id="TtR-j1-QVf">
@@ -292,7 +292,7 @@ Maecenas sagittis eu felis sed pellentesque. Integer varius justo sem, sed viver
                         <rect key="frame" x="0.0" y="0.0" width="414" height="808"/>
                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                         <subviews>
-                            <scrollView opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="gvg-6a-eKk" customClass="SSFadingScrollView">
+                            <scrollView opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="gvg-6a-eKk" customClass="SSFadingScrollView" customModule="SSFadingScrollView">
                                 <rect key="frame" x="0.0" y="0.0" width="414" height="808"/>
                                 <subviews>
                                     <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="zdT-hq-zB7">
@@ -371,7 +371,7 @@ Maecenas sagittis eu felis sed pellentesque. Integer varius justo sem, sed viver
                         <rect key="frame" x="0.0" y="0.0" width="414" height="808"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <scrollView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" showsHorizontalScrollIndicator="NO" showsVerticalScrollIndicator="NO" translatesAutoresizingMaskIntoConstraints="NO" id="VxD-ra-tQ0" customClass="SSFadingScrollView">
+                            <scrollView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" showsHorizontalScrollIndicator="NO" showsVerticalScrollIndicator="NO" translatesAutoresizingMaskIntoConstraints="NO" id="VxD-ra-tQ0" customClass="SSFadingScrollView" customModule="SSFadingScrollView">
                                 <rect key="frame" x="0.0" y="0.0" width="414" height="414"/>
                                 <subviews>
                                     <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="coffee-1" translatesAutoresizingMaskIntoConstraints="NO" id="v8x-uw-Cbh">
@@ -406,11 +406,11 @@ Maecenas sagittis eu felis sed pellentesque. Integer varius justo sem, sed viver
                                     <userDefinedRuntimeAttribute type="boolean" keyPath="maskScrollBars" value="NO"/>
                                     <userDefinedRuntimeAttribute type="boolean" keyPath="fadeLeadingEdge" value="YES"/>
                                     <userDefinedRuntimeAttribute type="boolean" keyPath="fadeTrailingEdge" value="YES"/>
-                                    <userDefinedRuntimeAttribute type="number" keyPath="fadeAxis">
-                                        <integer key="value" value="1"/>
-                                    </userDefinedRuntimeAttribute>
                                     <userDefinedRuntimeAttribute type="number" keyPath="fadeSize">
                                         <real key="value" value="70"/>
+                                    </userDefinedRuntimeAttribute>
+                                    <userDefinedRuntimeAttribute type="number" keyPath="axisIB">
+                                        <integer key="value" value="1"/>
                                     </userDefinedRuntimeAttribute>
                                 </userDefinedRuntimeAttributes>
                             </scrollView>
