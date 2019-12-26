@@ -1,10 +1,11 @@
-#SSFadingScrollView
+
+# SSFadingScrollView
 
 A UIScrollView subclass that fades the leading and/or trailing edges of a scroll view to transparent. It animates the gradient in and out based on the current content offset, and uses a mask to fade the scroll view content without also fading the scroll bars.
 
 ![SSFadingScrollView screenshots](SSFadingScrollView.png)
 
-##Features
+## Features
 
 - [x] Fade top and/or bottom of vertical scroll view
 - [x] Fade left and/or right of horizontal scroll view
@@ -13,37 +14,37 @@ A UIScrollView subclass that fades the leading and/or trailing edges of a scroll
 - [x] Scroll bars don't fade out with the scroll view content
 - [x] IBInspectable properties allow you to set up your fading scroll view entirely in Interface Builder. (See the demo project for an example.)
 
-##Properties
+## Properties
 
-#####fadeLeadingEdge
+##### fadeLeadingEdge
 
 Fade leading edge of fade axis. Default is YES.
 
-#####fadeTrailingEdge
+##### fadeTrailingEdge
 
 Fade trailing edge of fade axis. Default is YES.
 
-#####fadeSize
+##### fadeSize
 
 Size of gradient. Default is 30.
 
-#####fadeDuration
+##### fadeDuration
 
 Duration of fade in & out. Default is 0.3 seconds.
 
-#####maskScrollBars
+##### maskScrollBars
 
 Default is YES. Scroll bars are masked so they don't fade with the scroll view content. Set to NO to fade out the scroll bars along with the content.
 
-##Installation
+## Installation
 
-###CocoaPods
+### CocoaPods
 
 To install via CocoaPods, add to your podfile:
 
     pod 'SSFadingScrollView', '~> 1.1'
 
-##Acknowledgements
+## Acknowledgements
 
 With thanks to:
 
@@ -52,7 +53,7 @@ With thanks to:
 
 Photos in the demo project were sourced from [Unsplash](https://unsplash.com/).
  
-##License
+## License
 
 SSFadingScrollView is released under the MIT license. See LICENSE for details.
  
